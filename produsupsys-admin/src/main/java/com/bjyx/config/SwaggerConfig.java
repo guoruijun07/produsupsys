@@ -1,4 +1,4 @@
-package com.bjyx.web.core.config;
+package com.bjyx.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
