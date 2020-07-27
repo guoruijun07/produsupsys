@@ -55,7 +55,7 @@ public class SortingBatchController extends BaseController {
     public TableDataInfo list(SysUser user)
     {
         startPage();
-        List<PostWebPscExport> list = postWebPscExportMapper.selectByUserId(user.getUserId());
+        List<PostWebPscExport> list = postWebPscExportMapper.selectByUserId(1L);
         return getDataTable(list);
     }
 }

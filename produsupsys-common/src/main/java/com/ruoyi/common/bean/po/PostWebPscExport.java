@@ -1,15 +1,16 @@
 package com.ruoyi.common.bean.po;
 
+import java.util.Date;
 public class PostWebPscExport {
     /**
      * 主建id id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户Id user_id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 文件名 file_name
@@ -34,7 +35,7 @@ public class PostWebPscExport {
     /**
      * 创建时间 create_time
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     /**
      * 备注 remark
@@ -45,7 +46,7 @@ public class PostWebPscExport {
      *
      * @mbggenerated
      */
-    public PostWebPscExport(Integer id, Integer userId, String fileName, Integer totalNum, Integer sucessNum, Double money, java.util.Date createTime, String remark) {
+    public PostWebPscExport(Long id, Long userId, String fileName, Integer totalNum, Integer sucessNum, Double money, java.util.Date createTime, String remark) {
         this.id = id;
         this.userId = userId;
         this.fileName = fileName;
@@ -69,7 +70,7 @@ public class PostWebPscExport {
 
      * @return id 主建id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -78,7 +79,7 @@ public class PostWebPscExport {
 
      * @param id 主建id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,7 +88,7 @@ public class PostWebPscExport {
 
      * @return user_id 用户Id
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -96,7 +97,7 @@ public class PostWebPscExport {
 
      * @param userId 用户Id
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
