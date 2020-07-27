@@ -1,12 +1,15 @@
 package com.ruoyi.framework.shiro.service;
 
-import java.io.Serializable;
+import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.framework.shiro.session.OnlineSession;
+import com.ruoyi.system.domain.SysUserOnline;
+import com.ruoyi.system.service.ISysUserOnlineService;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.system.domain.SysUserOnline;
-import com.ruoyi.system.service.ISysUserOnlineService;
+
+import java.io.Serializable;
+
 
 /**
  * 会话db操作处理
@@ -23,7 +26,7 @@ public class SysShiroService
      *
      * @param onlineSession 会话信息
      */
-    public void deleteSession(com.ruoyi.framework.shiro.session.OnlineSession onlineSession)
+    public void deleteSession(OnlineSession onlineSession)
     {
         onlineService.deleteOnlineById(String.valueOf(onlineSession.getId()));
     }
@@ -42,7 +45,7 @@ public class SysShiroService
 
     public Session createSession(SysUserOnline userOnline)
     {
-        com.ruoyi.framework.shiro.session.OnlineSession onlineSession = new com.ruoyi.framework.shiro.session.OnlineSession();
+        OnlineSession onlineSession = new OnlineSession();
         if (StringUtils.isNotNull(userOnline))
         {
             onlineSession.setId(userOnline.getSessionId());

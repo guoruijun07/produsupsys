@@ -6,6 +6,25 @@
 	<th:block th:include="include :: ztree-css" />
 </head>
 <body class="gray-bg">
+<!--	<div class="ui-layout-west">-->
+<!--		<div class="box box-main">-->
+<!--			<div class="box-header">-->
+<!--				<div class="box-title">-->
+<!--					<i class="fa icon-grid"></i> 分拣码批量查询-->
+<!--				</div>-->
+<!--				<div class="box-tools pull-right">-->
+<!--				    <a type="button" class="btn btn-box-tool" href="#" onclick="dept()" title="管理部门"><i class="fa fa-edit"></i></a>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnExpand" title="展开" style="display:none;"><i class="fa fa-chevron-up"></i></button>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnCollapse" title="折叠"><i class="fa fa-chevron-down"></i></button>-->
+<!--					<button type="button" class="btn btn-box-tool" id="btnRefresh" title="刷新部门"><i class="fa fa-refresh"></i></button>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="ui-layout-content">-->
+<!--				<div id="tree" class="ztree"></div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
 	<div class="ui-layout-center">
 		<div class="container-div">
 			<div class="row">
@@ -16,7 +35,16 @@
 						<div class="select-list">
 							<ul>
 								<li>
-									文件名：<input type="text" name="loginName"/>
+									登录名称：<input type="text" name="loginName"/>
+								</li>
+								<li>
+									手机号码：<input type="text" name="phonenumber"/>
+								</li>
+								<li>
+									用户状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+										<option value="">所有</option>
+										<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+									</select>
 								</li>
 								<li class="select-time">
 									<label>创建时间： </label>
@@ -34,6 +62,15 @@
 				</div>
 				
 		        <div class="btn-group-sm" id="toolbar" role="group">
+		        	<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="system:user:add">
+		                <i class="fa fa-plus"></i> 新增
+		            </a>
+		             <a class="btn btn-primary single disabled" onclick="$.operate.editTab()" shiro:hasPermission="system:user:edit">
+			            <i class="fa fa-edit"></i> 修改
+			        </a>
+		            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:user:remove">
+		                <i class="fa fa-remove"></i> 删除
+		            </a>
 		            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:user:import">
 			            <i class="fa fa-upload"></i> 导入
 			        </a>
@@ -56,7 +93,7 @@
 		var editFlag = [[${@permission.hasPermi('system:user:edit')}]];
 		var removeFlag = [[${@permission.hasPermi('system:user:remove')}]];
 		var resetPwdFlag = [[${@permission.hasPermi('system:user:resetPwd')}]];
-		var prefix = ctx + "sorting";
+		var prefix = ctx + "system/user";
 
 		$(function() {
 		    var panehHidden = false;
@@ -65,17 +102,21 @@
 		    }
 		    $('body').layout({ initClosed: panehHidden, west__size: 185 });
 		    queryUserList();
+		    queryDeptTree();
 		});
 
 		function queryUserList() {
 		    var options = {
 		        url: prefix + "/list",
+		        createUrl: prefix + "/add",
+		        updateUrl: prefix + "/edit/{id}",
+		        removeUrl: prefix + "/remove",
 		        exportUrl: prefix + "/export",
 		        importUrl: prefix + "/importData",
 		        importTemplateUrl: prefix + "/importTemplate",
 		        sortName: "createTime",
 		        sortOrder: "desc",
-		        modalName: "分拣码批量匹配",
+		        modalName: "用户",
 		        columns: [{
 		            checkbox: true
 		        },
