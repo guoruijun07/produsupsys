@@ -1,6 +1,9 @@
 package com.ruoyi.common.core.domain;
 
+import com.ruoyi.common.utils.StringUtils;
+
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 操作消息提醒
@@ -64,6 +67,31 @@ public class AjaxResult extends HashMap<String, Object>
 
     /**
      * 初始化一个新创建的 AjaxResult 对象
+     *
+     * @param code 状态类型
+     * @param msg 返回内容
+     */
+    public AjaxResult(int code, String msg)
+    {
+        super.put(CODE_TAG, code);
+        super.put(MSG_TAG, msg);
+    }
+
+    /**
+     * 初始化一个新创建的 AjaxResult 对象
+     *
+     * @param code 状态类型
+     * @param msg 返回内容
+     */
+    public AjaxResult(int code, String msg, List data)
+    {
+        super.put(CODE_TAG, code);
+        super.put(MSG_TAG, msg);
+        super.put(DATA_TAG, data);
+    }
+
+    /**
+     * 初始化一个新创建的 AjaxResult 对象
      * 
      * @param type 状态类型
      * @param msg 返回内容
@@ -73,7 +101,7 @@ public class AjaxResult extends HashMap<String, Object>
     {
         super.put(CODE_TAG, type.value);
         super.put(MSG_TAG, msg);
-        if (com.ruoyi.common.utils.StringUtils.isNotNull(data))
+        if (StringUtils.isNotNull(data))
         {
             super.put(DATA_TAG, data);
         }
@@ -144,6 +172,17 @@ public class AjaxResult extends HashMap<String, Object>
     {
         return new AjaxResult(Type.WARN, msg, data);
     }
+    /**
+     * 返回自定义警告消息
+     *
+     * @param code 返回代码
+     * @param msg 数据内容
+     * @return 警告消息
+     */
+    public static AjaxResult warn(int code, String msg)
+    {
+        return new AjaxResult(code, msg);
+    }
 
     /**
      * 返回错误消息
@@ -176,5 +215,17 @@ public class AjaxResult extends HashMap<String, Object>
     public static AjaxResult error(String msg, Object data)
     {
         return new AjaxResult(Type.ERROR, msg, data);
+    }
+
+    /**
+     * 返回自定义错误消息
+     *
+     * @param code 返回代码
+     * @param msg 返回内容
+     * @return 警告消息
+     */
+    public static AjaxResult error(int code,String msg)
+    {
+        return new AjaxResult(code, msg);
     }
 }

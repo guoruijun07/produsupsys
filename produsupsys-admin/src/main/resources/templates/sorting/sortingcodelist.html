@@ -34,12 +34,17 @@
 				</div>
 				
 		        <div class="btn-group-sm" id="toolbar" role="group">
+<!--					<div>-->
+<!--						<input  type="file" name="file" id="file1">-->
+<!--						<input  class="btn btn-info " type="button" id="uploadButton" value="上传">-->
+<!--					</div>-->
+
 		            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:user:import">
-			            <i class="fa fa-upload"></i> 导入
+			            <i class="fa fa-upload"></i> 上传需匹配文件
 			        </a>
-		            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:user:export">
-			            <i class="fa fa-download"></i> 导出
-			        </a>
+<!--		            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:user:export">-->
+<!--			            <i class="fa fa-download"></i> 导出-->
+<!--			        </a>-->
 		        </div>
 		        
 		        <div class="col-sm-12 select-table table-striped">
@@ -64,21 +69,19 @@
 		        panehHidden = true;
 		    }
 		    $('body').layout({ initClosed: panehHidden, west__size: 185 });
-		    queryUserList();
+		    querySortingList();
 		});
 
-		function queryUserList() {
+		function querySortingList() {
 		    var options = {
 		        url: prefix + "/list",
 		        exportUrl: prefix + "/export",
-		        importUrl: prefix + "/importData",
+		        importUrl: prefix + "/upload",
 		        importTemplateUrl: prefix + "/importTemplate",
 		        sortName: "createTime",
 		        sortOrder: "desc",
 		        modalName: "分拣码批量匹配",
-		        columns: [{
-		            checkbox: true
-		        },
+		        columns: [
 		        {
 		            field: 'id',
 		            title: '编号'
@@ -121,24 +124,7 @@
 		    };
 		    $.table.init(options);
 		}
-		
-		function queryDeptTree()
-		{
-			var url = ctx + "system/dept/treeData";
-			var options = {
-		        url: url,
-		        expandLevel: 2,
-		        onClick : zOnClick
-		    };
-			$.tree.init(options);
-			
-			function zOnClick(event, treeId, treeNode) {
-				$("#deptId").val(treeNode.id);
-				$("#parentId").val(treeNode.pId);
-				$.table.search();
-			}
-		}
-		
+
 		$('#btnExpand').click(function() {
 			$._tree.expandAll(true);
 		    $(this).hide();
@@ -150,51 +136,39 @@
 		    $(this).hide();
 		    $('#btnExpand').show();
 		});
-		
-		$('#btnRefresh').click(function() {
-			queryDeptTree();
+
+		$("#uploadButton").click(function () {
+			var file = $("#file").val();
+			if (file == null || file == "") {
+				alert("请选择导入文件");
+				return;
+			}
+			var formData = new FormData();
+			formData.append('file', $('#file')[0].files[0]);
+			$.ajax({
+				dataType: "json",
+				type: "POST",
+				url: '/sorting/upload',
+				data: formData,
+				contentType: false,//必须false才会自closeLoading();动加上正确的Content-Type
+				processData: false,//必须false才会避开jQuery对 formdata 的默认处理XMLHttpRequest会对 formdata 进行正确的处理
+				success: function (data) {
+					// alert(data.msg);
+					// $("#fileName").val(data.msg);
+					if(data.code==1){
+						alert("上传成功")
+						window.location.href="/sorting/getList";
+					}
+					if(data.code==0){
+						alert(data.msg)
+					}
+				},
+				error: function (er) {          //失败，回调函数
+					alert("eer"+data.msg);
+				}
+			});
 		});
 
-		/* 用户管理-部门 */
-		function dept() {
-			var url = ctx + "system/dept";
-			$.modal.openTab("部门管理", url);
-		}
-
-		/* 用户管理-重置密码 */
-		function resetPwd(userId) {
-		    var url = prefix + '/resetPwd/' + userId;
-		    $.modal.open("重置密码", url, '800', '300');
-		}
-		
-		/* 用户管理-分配角色 */
-		function authRole(userId) {
-		    var url = prefix + '/authRole/' + userId;
-		    $.modal.openTab("用户分配角色", url);
-		}
-		
-		/* 用户状态显示 */
-		function statusTools(row) {
-		    if (row.status == 1) {
-    			return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.userId + '\')"></i> ';
-    		} else {
-    			return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.userId + '\')"></i> ';
-    		}
-		}
-		
-		/* 用户管理-停用 */
-		function disable(userId) {
-			$.modal.confirm("确认要停用用户吗？", function() {
-				$.operate.post(prefix + "/changeStatus", { "userId": userId, "status": 1 });
-		    })
-		}
-
-		/* 用户管理启用 */
-		function enable(userId) {
-			$.modal.confirm("确认要启用用户吗？", function() {
-				$.operate.post(prefix + "/changeStatus", { "userId": userId, "status": 0 });
-		    })
-		}
 
 		function downloadFile(fileName) {
 

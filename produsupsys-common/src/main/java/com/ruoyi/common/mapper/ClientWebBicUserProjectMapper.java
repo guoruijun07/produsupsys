@@ -1,7 +1,8 @@
 package com.ruoyi.common.mapper;
 
-import org.apache.ibatis.annotations.*;
 import com.ruoyi.common.bean.po.ClientWebBicUserProject;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
 public interface ClientWebBicUserProjectMapper {
 
@@ -24,5 +25,6 @@ public interface ClientWebBicUserProjectMapper {
         "values (#{id,jdbcType=INTEGER})"
     })
     int insert(ClientWebBicUserProject record);
+
 
 }
