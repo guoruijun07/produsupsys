@@ -13,6 +13,9 @@ import com.ruoyi.common.mapper.ClientWebPpcPriceMapper;
 import com.ruoyi.common.mapper.ISysUserMapper;
 import com.ruoyi.common.mapper.PostWebPscExportMapper;
 import com.ruoyi.framework.util.ShiroUtils;
+import com.ruoyi.common.bean.bo.ReadySortingBO;
+import com.alibaba.excel.EasyExcel;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,13 +95,12 @@ public class SortingBatchController extends BaseController {
         if (price == null) {
             return AjaxResult.warn(0, "请先设置该用户pc功能单价");
         }
-//        Double pcPrice = tbPriceInfo.getPrice() == null ? 0.0 : tbPriceInfo.getPrice();
-//
-//        List<ReadySortingData> list = new ArrayList<>();
-//        // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-//        EasyExcel.read(file.getInputStream(), ReadySortingData.class, new BathSortingDataListener(list)).sheet().doRead();
-//        int totalNum = list.size();
-//        int successNum = 0;
+
+        List<com.ruoyi.common.bean.bo.ReadySortingBO> list = new java.util.ArrayList<>();
+        // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
+        com.alibaba.excel.EasyExcel.read(file.getInputStream(), com.ruoyi.common.bean.bo.ReadySortingBO.class, new com.ruoyi.web.controller.excel.listener.BathSortingDataListener(list)).sheet().doRead();
+        int totalNum = list.size();
+        int successNum = 0;
 //        //获取到所有分拣信息
 //        List<TbSortingInfo> tbSortingInfos = tbSortingInfoMapper.selectAllData();
 //        Map<String, TbSortingInfo> map = new HashMap<>();
