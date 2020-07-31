@@ -6,6 +6,8 @@ public class ClientWebPpcPrice {
      */
     private Integer id;
 
+    private Double price;
+
     /**
      *
      * @mbggenerated
@@ -38,5 +40,13 @@ public class ClientWebPpcPrice {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

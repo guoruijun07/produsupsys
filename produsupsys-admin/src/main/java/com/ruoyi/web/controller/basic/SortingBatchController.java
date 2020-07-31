@@ -1,8 +1,11 @@
 package com.ruoyi.web.controller.basic;
 
+import com.alibaba.excel.EasyExcel;
 import com.ruoyi.common.annotation.Log;
+import com.ruoyi.common.bean.bo.ReadySortingBO;
 import com.ruoyi.common.bean.po.ClientWebPpcPrice;
 import com.ruoyi.common.bean.po.PostWebPscExport;
+import com.ruoyi.common.bean.po.PostWebPscSorting;
 import com.ruoyi.common.bean.po.SysUser;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -12,10 +15,10 @@ import com.ruoyi.common.enums.EnumPriceCode;
 import com.ruoyi.common.mapper.ClientWebPpcPriceMapper;
 import com.ruoyi.common.mapper.ISysUserMapper;
 import com.ruoyi.common.mapper.PostWebPscExportMapper;
+import com.ruoyi.common.mapper.PostWebPscSortingMapper;
 import com.ruoyi.framework.util.ShiroUtils;
-import com.ruoyi.common.bean.bo.ReadySortingBO;
-import com.alibaba.excel.EasyExcel;
-
+import com.ruoyi.web.controller.excel.listener.BathSortingDataListener;
+import com.ruoyi.web.controller.excel.template.SortingExportTemplate;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 分拣码批量查询
@@ -47,8 +53,8 @@ public class SortingBatchController extends BaseController {
     @Autowired(required = false)
     private ClientWebPpcPriceMapper clientWebPpcPriceMapper;
 
-//    @Autowired(required = false)
-//    private TbPriceInfoMapper tbPriceInfoMapper;
+    @Autowired(required = false)
+    private PostWebPscSortingMapper postWebPscSortingMapper;
 
     String dirPath = "/home/code" + File.separator + "exportMatching" + File.separator;
 
@@ -90,63 +96,59 @@ public class SortingBatchController extends BaseController {
 
         //取出用户的余额
         Double account = sysUser.getAccount() == null ? 0.0 : sysUser.getAccount();
-        ClientWebPpcPrice price = clientWebPpcPriceMapper.selectPriceByUserId(sysUser.getUserId(),1,  EnumPriceCode.PC_PRICE.getCode());
+        ClientWebPpcPrice priceInfo = clientWebPpcPriceMapper.selectPriceByUserId(sysUser.getUserId(),1,  EnumPriceCode.PC_PRICE.getCode());
 
-        if (price == null) {
+        if (priceInfo.getPrice() == null) {
             return AjaxResult.warn(0, "请先设置该用户pc功能单价");
         }
 
-        List<com.ruoyi.common.bean.bo.ReadySortingBO> list = new java.util.ArrayList<>();
+        List<ReadySortingBO> list = new ArrayList<>();
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-        com.alibaba.excel.EasyExcel.read(file.getInputStream(), com.ruoyi.common.bean.bo.ReadySortingBO.class, new com.ruoyi.web.controller.excel.listener.BathSortingDataListener(list)).sheet().doRead();
+        EasyExcel.read(file.getInputStream(), ReadySortingBO.class, new BathSortingDataListener(list)).sheet().doRead();
         int totalNum = list.size();
         int successNum = 0;
-//        //获取到所有分拣信息
-//        List<TbSortingInfo> tbSortingInfos = tbSortingInfoMapper.selectAllData();
-//        Map<String, TbSortingInfo> map = new HashMap<>();
-//        for (TbSortingInfo tbSortingInfo : tbSortingInfos) {
-//            map.put(tbSortingInfo.getSortingName(), tbSortingInfo);
-//        }
-//
-//        List<SortingExportTemplate> exportDatas = new ArrayList<>();
-//
-//        for (ReadySortingData readySortingData : list) {
-//            SortingExportTemplate sortingExport = new SortingExportTemplate();
-//            sortingExport.setWaybillNo(readySortingData.getWaybillNo());
-//            sortingExport.setReceiveAddress(readySortingData.getReceiveAddress());
-//            sortingExport.setThreeSorting(readySortingData.getThreeSorting());
-//            sortingExport.setThreeSortingSimple(readySortingData.getThreeSortingSimple());
-//
-//            TbSortingInfo tbSortingInfo = map.get(readySortingData.getThreeSortingSimple());
-//            if (tbSortingInfo != null) {
-//                successNum++;
-//                sortingExport.setMarking(tbSortingInfo.getMarking());
-//                sortingExport.setDistribuCenter(tbSortingInfo.getDistribuCenter());
-//                sortingExport.setDlvName(tbSortingInfo.getDlvName());
-//                sortingExport.setAreaNum(tbSortingInfo.getAreaNum());
-//
-//                String orgNo = "";
-//                if (tbSortingInfo.getOrgNum() != null) {
-//                    orgNo = String.valueOf(tbSortingInfo.getOrgNum());
-//                }
-//                sortingExport.setOrgNum(orgNo);
-//                sortingExport.setOrgName(tbSortingInfo.getOrgName());
-//            }
-//
-//            exportDatas.add(sortingExport);
-//        }
-//        //如果余额不够，直接返回，不生成文件
-//        Double cost = successNum * pcPrice;
-////        Double cost = successNum * Double.valueOf(perMoney);
-//        if (cost > totalSum) {
-//            return new SysResult(0, "您的余额不够，请联系管理员充值");
-//        }
-//        //更新余额
-//        Double remainingSum = totalSum - cost;
-//        TbUserInfo tbUserInfo1 = new TbUserInfo();
-//        tbUserInfo1.setId(tbUserInfo.getId());
-//        tbUserInfo1.setRemainingSum(remainingSum);
-//        userInfoMapper.updateRemainingSumByPrimaryKey(tbUserInfo1);
+        //获取到所有分拣信息
+        List<PostWebPscSorting> postWebPscSortings = postWebPscSortingMapper.selectAllData();
+        Map<String, PostWebPscSorting> map = new HashMap<>();
+        for (PostWebPscSorting postWebPscSorting : postWebPscSortings) {
+            map.put(postWebPscSorting.getSortingName(), postWebPscSorting);
+        }
+
+        List<SortingExportTemplate> exportDatas = new ArrayList<>();
+
+        for (ReadySortingBO readySortingBo : list) {
+            SortingExportTemplate sortingExport = new SortingExportTemplate();
+            sortingExport.setWaybillNo(readySortingBo.getWaybillNo());
+            sortingExport.setReceiveAddress(readySortingBo.getReceiveAddress());
+            sortingExport.setThreeSorting(readySortingBo.getThreeSorting());
+            sortingExport.setThreeSortingSimple(readySortingBo.getThreeSortingSimple());
+
+            PostWebPscSorting postWebPscSorting = map.get(readySortingBo.getThreeSortingSimple());
+            if (postWebPscSorting != null) {
+                successNum++;
+                sortingExport.setMarking(postWebPscSorting.getMarking());
+                sortingExport.setDistribuCenter(postWebPscSorting.getDistribuCenter());
+                sortingExport.setDlvName(postWebPscSorting.getDlvName());
+                sortingExport.setAreaNum(postWebPscSorting.getAreaNum());
+                sortingExport.setOrgNum(String.valueOf(postWebPscSorting.getOrgNo()));
+                sortingExport.setOrgName(postWebPscSorting.getOrgName());
+            }
+
+            exportDatas.add(sortingExport);
+        }
+        //如果余额不够，直接返回，不生成文件
+        Double cost = successNum * priceInfo.getPrice();
+//        Double cost = successNum * Double.valueOf(perMoney);
+        if (cost > account) {
+            return AjaxResult.warn(0, "您的余额不够，请联系管理员充值");
+        }
+        //更新余额
+        Double remainingSum = account - cost;
+
+//        SysUser sysUser1 = new SysUser();
+//        sysUser1.setId(sysUser1.getId());
+//        sysUser1.setRemainingSum(remainingSum);
+//        sysUserMapper.updateRemainingSumByPrimaryKey(tbUserInfo1);
 //
 //        String fileNameOriginal = file.getOriginalFilename();
 //        String fileName = new String((fileNameOriginal + "_" + DateUtils.format(new Date(), "yyyyMMddHHmmss") + ".xlsx").getBytes(), "UTF-8");
