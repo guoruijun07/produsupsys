@@ -145,16 +145,17 @@ public class SortingBatchController extends BaseController {
         //更新余额
         Double remainingSum = account - cost;
 
-//        SysUser sysUser1 = new SysUser();
-//        sysUser1.setId(sysUser1.getId());
-//        sysUser1.setRemainingSum(remainingSum);
-//        sysUserMapper.updateRemainingSumByPrimaryKey(tbUserInfo1);
-//
+        SysUser sysUserRecord =new SysUser();
+        sysUserRecord.setUserId(sysUser.getUserId());
+        sysUserRecord.setAccount(remainingSum);
+
+        sysUserMapper.updateByPrimaryKey(sysUserRecord);
+
 //        String fileNameOriginal = file.getOriginalFilename();
 //        String fileName = new String((fileNameOriginal + "_" + DateUtils.format(new Date(), "yyyyMMddHHmmss") + ".xlsx").getBytes(), "UTF-8");
 //        try {
 //
-//            File exportFile = CommomUtils.MakeLogDir(dirPath, fileName, tbUserInfo.getMobile());
+//            File exportFile = com.ruoyi.common.utils.CommomUtils.MakeLogDir(dirPath, fileName, tbUserInfo.getMobile());
 //
 //            OutputStream outputStream = new FileOutputStream(exportFile);
 //

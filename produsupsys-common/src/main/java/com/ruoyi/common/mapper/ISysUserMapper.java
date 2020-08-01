@@ -2,6 +2,7 @@ package com.ruoyi.common.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+import com.ruoyi.common.bean.po.SysUser;
 
 public interface ISysUserMapper {
 
@@ -41,7 +42,7 @@ public interface ISysUserMapper {
         "#{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, ",
         "#{remark,jdbcType=VARCHAR})"
     })
-    int insert(com.ruoyi.common.bean.po.SysUser record);
+    int insert(SysUser record);
 
 
     /**
@@ -79,7 +80,7 @@ public interface ISysUserMapper {
         @Arg(column="update_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="remark", javaType= String.class, jdbcType=JdbcType.VARCHAR)
     })
-    com.ruoyi.common.bean.po.SysUser selectByPrimaryKey(Long userId);
+     SysUser selectByPrimaryKey(Long userId);
 
 
     /**
@@ -110,5 +111,5 @@ public interface ISysUserMapper {
           "remark = #{remark,jdbcType=VARCHAR}",
         "where user_id = #{userId,jdbcType=BIGINT}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.SysUser record);
+    int updateByPrimaryKey(SysUser record);
 }
