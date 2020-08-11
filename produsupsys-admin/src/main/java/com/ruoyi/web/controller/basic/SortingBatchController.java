@@ -90,8 +90,8 @@ public class SortingBatchController extends BaseController {
         //取出用户的余额
         Double account = sysUser.getAccount() == null ? 0.0 : sysUser.getAccount();
         Long userId = sysUser.getUserId();
-//        PostWebPpcPrice priceInfo = postWebPpcPriceMapper.selectPriceByUserId(userId,1,  1);
-        PostWebPpcPrice priceInfo = new PostWebPpcPrice(1,1L,1,1,0.5);
+        PostWebPpcPrice priceInfo = postWebPpcPriceMapper.selectPriceByUserId(userId,1,  1);
+//        PostWebPpcPrice priceInfo = new PostWebPpcPrice(1,1L,1,1,0.5);
         if (priceInfo.getPrice() == null) {
             return AjaxResult.warn(0, "请先设置该用户pc功能单价");
         }

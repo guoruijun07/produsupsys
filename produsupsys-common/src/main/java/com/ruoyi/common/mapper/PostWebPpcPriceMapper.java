@@ -5,8 +5,8 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 public interface PostWebPpcPriceMapper {
-
     /**
+     *
      * @mbggenerated
      */
     @Delete({
@@ -16,6 +16,7 @@ public interface PostWebPpcPriceMapper {
     int deleteByPrimaryKey(Integer id);
 
     /**
+     *
      * @mbggenerated
      */
     @Insert({
@@ -26,7 +27,9 @@ public interface PostWebPpcPriceMapper {
     })
     int insert(PostWebPpcPrice record);
 
+
     /**
+     *
      * @mbggenerated
      */
     @Select({
@@ -36,15 +39,16 @@ public interface PostWebPpcPriceMapper {
             "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
-            @Arg(column = "id", javaType = Integer.class, jdbcType = JdbcType.INTEGER, id = true),
-            @Arg(column = "user_id", javaType = Long.class, jdbcType = JdbcType.BIGINT),
-            @Arg(column = "menu", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "source", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "price", javaType = Double.class, jdbcType = JdbcType.DOUBLE)
+            @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
+            @Arg(column="user_id", javaType=Long.class, jdbcType=JdbcType.BIGINT),
+            @Arg(column="menu", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="source", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="price", javaType=Double.class, jdbcType=JdbcType.DOUBLE)
     })
     PostWebPpcPrice selectByPrimaryKey(Integer id);
 
     /**
+     *
      * @mbggenerated
      */
     @Update({
@@ -67,11 +71,11 @@ public interface PostWebPpcPriceMapper {
             "where user_id = #{userId,jdbcType=BIGINT} and menu = #{menu,jdbcType=INTEGER} and source = #{source,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
-            @Arg(column = "id", javaType = Integer.class, jdbcType = JdbcType.INTEGER, id = true),
-            @Arg(column = "user_id", javaType = Long.class, jdbcType = JdbcType.BIGINT),
-            @Arg(column = "menu", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "source", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "price", javaType = Double.class, jdbcType = JdbcType.DOUBLE)
+            @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
+            @Arg(column="user_id", javaType=Long.class, jdbcType=JdbcType.BIGINT),
+            @Arg(column="menu", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="source", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="price", javaType=Double.class, jdbcType=JdbcType.DOUBLE)
     })
-    PostWebPpcPrice selectPriceByUserId(Long userId, Integer menu, Integer source);
+    PostWebPpcPrice selectPriceByUserId(@Param("userId") Long userId, @Param("menu") Integer menu,  @Param("source") Integer source);
 }
