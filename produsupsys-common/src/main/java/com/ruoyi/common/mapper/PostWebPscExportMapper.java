@@ -24,11 +24,11 @@ public interface PostWebPscExportMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_psc_export (id, user_id, ",
+        "insert into post_web_psc_export (user_id, ",
         "file_name, total_num, ",
         "sucess_num, money, ",
         "create_time, remark)",
-        "values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, ",
+        "values (#{userId,jdbcType=BIGINT}, ",
         "#{fileName,jdbcType=VARCHAR}, #{totalNum,jdbcType=INTEGER}, ",
         "#{sucessNum,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, ",
         "#{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})"

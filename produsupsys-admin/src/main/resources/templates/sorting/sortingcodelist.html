@@ -76,7 +76,7 @@
 		    var options = {
 		        url: prefix + "/list",
 		        exportUrl: prefix + "/export",
-		        importUrl: prefix + "/upload",
+		        importUrl: prefix + "/importData",
 		        importTemplateUrl: prefix + "/importTemplate",
 		        sortName: "createTime",
 		        sortOrder: "desc",
@@ -148,7 +148,7 @@
 			$.ajax({
 				dataType: "json",
 				type: "POST",
-				url: '/sorting/upload',
+				url: '/sorting/importData',
 				data: formData,
 				contentType: false,//必须false才会自closeLoading();动加上正确的Content-Type
 				processData: false,//必须false才会避开jQuery对 formdata 的默认处理XMLHttpRequest会对 formdata 进行正确的处理

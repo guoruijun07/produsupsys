@@ -1,9 +1,10 @@
 package com.ruoyi.web.controller.basic;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.util.DateUtils;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.bean.bo.ReadySortingBO;
-import com.ruoyi.common.bean.po.ClientWebPpcPrice;
+import com.ruoyi.common.bean.po.PostWebPpcPrice;
 import com.ruoyi.common.bean.po.PostWebPscExport;
 import com.ruoyi.common.bean.po.PostWebPscSorting;
 import com.ruoyi.common.bean.po.SysUser;
@@ -11,9 +12,8 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.common.enums.EnumPriceCode;
-import com.ruoyi.common.mapper.ClientWebPpcPriceMapper;
 import com.ruoyi.common.mapper.ISysUserMapper;
+import com.ruoyi.common.mapper.PostWebPpcPriceMapper;
 import com.ruoyi.common.mapper.PostWebPscExportMapper;
 import com.ruoyi.common.mapper.PostWebPscSortingMapper;
 import com.ruoyi.framework.util.ShiroUtils;
@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,10 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 分拣码批量查询
@@ -51,7 +49,7 @@ public class SortingBatchController extends BaseController {
     private ISysUserMapper sysUserMapper;
 
     @Autowired(required = false)
-    private ClientWebPpcPriceMapper clientWebPpcPriceMapper;
+    private PostWebPpcPriceMapper postWebPpcPriceMapper;
 
     @Autowired(required = false)
     private PostWebPscSortingMapper postWebPscSortingMapper;
@@ -84,20 +82,16 @@ public class SortingBatchController extends BaseController {
 //    @RequiresPermissions("sorting:import")
     @PostMapping("/importData")
     @ResponseBody
-    public AjaxResult importData(MultipartFile file) throws IOException {
+    public AjaxResult importData(MultipartFile file, ModelMap mmap) throws IOException {
         Long startTime = System.currentTimeMillis();
 
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(ShiroUtils.getSysUser().getUserId());
 
-//        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
-//        List<SysUser> userList = util.importExcel(file.getInputStream());
-//        String operName = ShiroUtils.getSysUser().getLoginName();
-//        String message = userService.importUser(userList, updateSupport, operName);
-
         //取出用户的余额
         Double account = sysUser.getAccount() == null ? 0.0 : sysUser.getAccount();
-        ClientWebPpcPrice priceInfo = clientWebPpcPriceMapper.selectPriceByUserId(sysUser.getUserId(),1,  EnumPriceCode.PC_PRICE.getCode());
-
+        Long userId = sysUser.getUserId();
+//        PostWebPpcPrice priceInfo = postWebPpcPriceMapper.selectPriceByUserId(userId,1,  1);
+        PostWebPpcPrice priceInfo = new PostWebPpcPrice(1,1L,1,1,0.5);
         if (priceInfo.getPrice() == null) {
             return AjaxResult.warn(0, "请先设置该用户pc功能单价");
         }
@@ -138,7 +132,6 @@ public class SortingBatchController extends BaseController {
         }
         //如果余额不够，直接返回，不生成文件
         Double cost = successNum * priceInfo.getPrice();
-//        Double cost = successNum * Double.valueOf(perMoney);
         if (cost > account) {
             return AjaxResult.warn(0, "您的余额不够，请联系管理员充值");
         }
@@ -151,33 +144,32 @@ public class SortingBatchController extends BaseController {
 
         sysUserMapper.updateByPrimaryKey(sysUserRecord);
 
-//        String fileNameOriginal = file.getOriginalFilename();
-//        String fileName = new String((fileNameOriginal + "_" + DateUtils.format(new Date(), "yyyyMMddHHmmss") + ".xlsx").getBytes(), "UTF-8");
-//        try {
-//
-//            File exportFile = com.ruoyi.common.utils.CommomUtils.MakeLogDir(dirPath, fileName, tbUserInfo.getMobile());
-//
-//            OutputStream outputStream = new FileOutputStream(exportFile);
-//
-//            //把数据封装为对象
-//            EasyExcel.write(outputStream, SortingExportTemplate.class).sheet("订单数据").doWrite(exportDatas);
-//
-//            PostWebPscExport tbExportInfo = new PostWebPscExport();
-//            tbExportInfo.setUserId(tbUserInfo.getId());
-//            tbExportInfo.setFileName(fileName);
-//            tbExportInfo.setTotalNum(totalNum);
-//            tbExportInfo.setSucessNum(successNum);
-//            tbExportInfo.setMoney(cost);
-//            tbExportInfo.setCreateTime(new Date());
-//            tbExportInfoMapper.insert(tbExportInfo);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        List<TbExportInfo> tbExportInfos = tbExportInfoMapper.selectAll();
-//        return new SysResult(1, "导入数据成功", "", remainingSum, tbExportInfos);
-        return AjaxResult.success("message");
+        String fileNameOriginal = file.getOriginalFilename();
+        String fileName = new String((fileNameOriginal + "_" + DateUtils.format(new Date(), "yyyyMMddHHmmss") + ".xlsx").getBytes(), "UTF-8");
+        try {
+
+            File exportFile = com.ruoyi.common.utils.CommomUtils.MakeLogDir(dirPath, fileName,sysUser.getPhonenumber());
+
+            OutputStream outputStream = new FileOutputStream(exportFile);
+
+            //把数据封装为对象
+            EasyExcel.write(outputStream, SortingExportTemplate.class).sheet("订单数据").doWrite(exportDatas);
+
+            PostWebPscExport tbExportInfo = new PostWebPscExport();
+            tbExportInfo.setUserId(sysUser.getUserId());
+            tbExportInfo.setFileName(fileName);
+            tbExportInfo.setTotalNum(totalNum);
+            tbExportInfo.setSucessNum(successNum);
+            tbExportInfo.setMoney(cost);
+            tbExportInfo.setCreateTime(new Date());
+            postWebPscExportMapper.insert(tbExportInfo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        sysUser.setAccount(remainingSum);
+        mmap.put("user", sysUser);
+        return AjaxResult.success("导入成功");
         
     }
 

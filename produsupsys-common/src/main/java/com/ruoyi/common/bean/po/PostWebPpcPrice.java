@@ -9,7 +9,7 @@ public class PostWebPpcPrice {
     /**
      *  user_id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 菜单: 0:根据数据设备查询 1:匹配查询，2:地址查询，3:面单打印，4:号码呼转 menu
@@ -30,7 +30,7 @@ public class PostWebPpcPrice {
      *
      * @mbggenerated
      */
-    public PostWebPpcPrice(Integer id, Integer userId, Integer menu, Integer source, Double price) {
+    public PostWebPpcPrice(Integer id, Long userId, Integer menu, Integer source, Double price) {
         this.id = id;
         this.userId = userId;
         this.menu = menu;
@@ -69,7 +69,7 @@ public class PostWebPpcPrice {
     
      * @return user_id 
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -78,7 +78,7 @@ public class PostWebPpcPrice {
     
      * @param userId 
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

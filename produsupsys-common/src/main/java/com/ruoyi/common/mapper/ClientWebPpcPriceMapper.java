@@ -1,8 +1,8 @@
 package com.ruoyi.common.mapper;
 
 import com.ruoyi.common.bean.po.ClientWebPpcPrice;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 
 public interface ClientWebPpcPriceMapper {
 
@@ -24,22 +24,6 @@ public interface ClientWebPpcPriceMapper {
     })
     int insert(ClientWebPpcPrice record);
 
-    /**
-     * @mbggenerated
-     */
-    @Select({
-            "select",
-            "id, user_id, menu, source, price",
-            "from tb_price_info",
-            "where user_id = #{userId,jdbcType=BIGINT} and menu = #{device,jdbcType=INTEGER} and source = #{device,jdbcType=INTEGER}"
-    })
-    @ConstructorArgs({
-            @Arg(column = "id", javaType = Long.class, jdbcType = JdbcType.BIGINT, id = true),
-            @Arg(column = "user_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "menu", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "source", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Arg(column = "price", javaType = Double.class, jdbcType = JdbcType.DOUBLE)
-    })
-    ClientWebPpcPrice selectPriceByUserId(Long userId, Integer meunu, Integer device);
+
 
 }
