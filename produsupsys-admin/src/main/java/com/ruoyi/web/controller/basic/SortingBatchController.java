@@ -68,10 +68,12 @@ public class SortingBatchController extends BaseController {
     @RequiresPermissions("sorting:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(SysUser user)
+    public TableDataInfo list(SysUser user, ModelMap mmap)
     {
         startPage();
         List<PostWebPscExport> list = postWebPscExportMapper.selectByUserId(1L);
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(ShiroUtils.getSysUser().getUserId());
+        mmap.put("user", sysUser);
         return getDataTable(list);
     }
 
