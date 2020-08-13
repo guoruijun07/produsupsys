@@ -1,5 +1,7 @@
 package com.ruoyi.common.bean.po;
 
+import java.util.Date;
+
 public class PostWebPscAdressBatchMatching {
     /**
      * 主键 id
@@ -44,12 +46,12 @@ public class PostWebPscAdressBatchMatching {
     /**
      * 修改时间 modify_time
      */
-    private java.util.Date modifyTime;
+    private Date modifyTime;
 
     /**
      * 创建时间 create_time
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     /**
      *

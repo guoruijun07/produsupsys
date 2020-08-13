@@ -1,8 +1,8 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostWebPscOrderOriginal;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostWebPscOrderOriginal;
 
 public interface PostWebPscOrderOriginalMapper {
 

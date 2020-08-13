@@ -1,5 +1,8 @@
 package com.ruoyi.common.bean.po;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class PostWebPscAddressBatchExport {
     /**
      * 主键 id
@@ -29,7 +32,7 @@ public class PostWebPscAddressBatchExport {
     /**
      * 金额 money
      */
-    private java.math.BigDecimal money;
+    private BigDecimal money;
 
     /**
      * 匹配状态:0,未匹配1,已匹配 status
@@ -39,23 +42,23 @@ public class PostWebPscAddressBatchExport {
     /**
      * 用户id user_id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 修改时间 modify_time
      */
-    private java.util.Date modifyTime;
+    private Date modifyTime;
 
     /**
      * 创建时间 create_time
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     /**
      *
      * @mbggenerated
      */
-    public PostWebPscAddressBatchExport(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, java.math.BigDecimal money, Integer status, Integer userId, java.util.Date modifyTime, java.util.Date createTime) {
+    public PostWebPscAddressBatchExport(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, java.math.BigDecimal money, Integer status, Long userId, java.util.Date modifyTime, java.util.Date createTime) {
         this.id = id;
         this.batchNo = batchNo;
         this.fileName = fileName;
@@ -171,7 +174,7 @@ public class PostWebPscAddressBatchExport {
 
      * @return money 金额
      */
-    public java.math.BigDecimal getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
@@ -180,7 +183,7 @@ public class PostWebPscAddressBatchExport {
 
      * @param money 金额
      */
-    public void setMoney(java.math.BigDecimal money) {
+    public void setMoney(BigDecimal money) {
         this.money = money;
     }
 
@@ -207,7 +210,7 @@ public class PostWebPscAddressBatchExport {
 
      * @return user_id 用户id
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -216,7 +219,7 @@ public class PostWebPscAddressBatchExport {
 
      * @param userId 用户id
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -225,7 +228,7 @@ public class PostWebPscAddressBatchExport {
 
      * @return modify_time 修改时间
      */
-    public java.util.Date getModifyTime() {
+    public Date getModifyTime() {
         return modifyTime;
     }
 
@@ -234,7 +237,7 @@ public class PostWebPscAddressBatchExport {
 
      * @param modifyTime 修改时间
      */
-    public void setModifyTime(java.util.Date modifyTime) {
+    public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
 
@@ -243,7 +246,7 @@ public class PostWebPscAddressBatchExport {
 
      * @return create_time 创建时间
      */
-    public java.util.Date getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
@@ -252,7 +255,7 @@ public class PostWebPscAddressBatchExport {
 
      * @param createTime 创建时间
      */
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 }

@@ -1,8 +1,10 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostWebPscAddressBatchExport;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostWebPscAddressBatchExport;
+
+import java.util.List;
 
 public interface PostWebPscAddressBatchExportMapper {
     /**
@@ -77,4 +79,28 @@ public interface PostWebPscAddressBatchExportMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(PostWebPscAddressBatchExport record);
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Select({
+            "select",
+            "id, batch_no, file_name, total_num, success_num, money, status, user_id, modify_time,create_time ",
+            "from post_web_psc_address_batch_export",
+            "where user_id = #{id,jdbcType=BIGINT} "
+    })
+    @ConstructorArgs({
+            @Arg(column="id", javaType= Integer.class, jdbcType=JdbcType.INTEGER, id=true),
+            @Arg(column="batch_no", javaType= String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="file_name", javaType= String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="total_num", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="success_num", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="money", javaType= java.math.BigDecimal.class, jdbcType=JdbcType.DECIMAL),
+            @Arg(column="status", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="user_id", javaType= Long.class, jdbcType=JdbcType.BIGINT),
+            @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<PostWebPscAddressBatchExport> selectByUserId(@Param("userId") Long userId);
 }
