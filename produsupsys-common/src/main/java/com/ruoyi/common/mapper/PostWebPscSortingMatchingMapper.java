@@ -1,7 +1,12 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostWebPscOrderOriginal;
+import com.ruoyi.common.bean.po.PostWebPscSortingMatching;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PostWebPscSortingMatchingMapper {
 
@@ -60,7 +65,7 @@ public interface PostWebPscSortingMatchingMapper {
         "#{sortingStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, ",
         "#{modifyTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})"
     })
-    int insert(com.ruoyi.common.bean.po.PostWebPscSortingMatching record);
+    int insert(PostWebPscSortingMatching record);
 
 
     /**
@@ -119,7 +124,7 @@ public interface PostWebPscSortingMatchingMapper {
         @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    com.ruoyi.common.bean.po.PostWebPscSortingMatching selectByPrimaryKey(Integer id);
+    PostWebPscSortingMatching selectByPrimaryKey(Integer id);
 
 
     /**
@@ -167,5 +172,104 @@ public interface PostWebPscSortingMatchingMapper {
           "create_time = #{createTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostWebPscSortingMatching record);
+    int updateByPrimaryKey(PostWebPscSortingMatching record);
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Select({
+            "select",
+            "id, batch_no,order_no, sender_name, sender_mobile_one, sender_mobile_two, sender_province, ",
+            "sender_city, sender_county, sender_address, reciver_name, reciver_mobile_one, ",
+            "reciver_mobile_two, reciver_province, reciver_city, reciver_county, reciver_address, ",
+            "datoubi, datoubi_code, consolidation_name, consolidation_code, level_four_sorting_name, ",
+            "sorting_name, marking, distribu_center, dlv_no, dlv_name, org_no, org_name, ",
+            "operation_no, operation_name, operation_time, matching_distribu_center_status, ",
+            "city_wide_flag,sorting_status, remark, modify_time, create_time",
+            "from tb_sorting_matching_info",
+            "where batch_no = #{id,jdbcType=VARCHAR}"
+    })
+    @ConstructorArgs({
+            @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
+            @Arg(column="batch_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="order_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="datoubi", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="datoubi_code", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="consolidation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="consolidation_code", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="level_four_sorting_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sorting_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="marking", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="distribu_center", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="dlv_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="dlv_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="org_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="org_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="matching_distribu_center_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="city_wide_flag", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="sorting_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="remark", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="modify_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="create_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<PostWebPscSortingMatching> selectByBatch(String batchNo);
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Insert({
+            "<script>",
+            "insert into tb_sorting_matching_info (batch_no,order_no, ",
+            "sender_name, ",
+            "sender_mobile_one, sender_mobile_two, ",
+            "sender_province, sender_city, ",
+            "sender_county, sender_address, ",
+            "reciver_name, reciver_mobile_one, ",
+            "reciver_mobile_two, reciver_province, ",
+            "reciver_city, reciver_county, ",
+            "reciver_address, operation_no, ",
+            "operation_name, operation_time, ",
+            "city_wide_flag,  ",
+            "sorting_status,  ",
+            "remark, modify_time, ",
+            "create_time)",
+            "values " ,
+            "<foreach collection='pscSortingMatchingList' item='item' index='index' separator=','>",
+            "(#{item.batchNo,jdbcType=VARCHAR}, ",
+            "#{item.orderNo,jdbcType=VARCHAR}, ",
+            "#{item.senderName,jdbcType=VARCHAR}, #{item.senderMobileOne,jdbcType=VARCHAR}, ",
+            "#{item.senderMobileTwo,jdbcType=VARCHAR}, #{item.senderProvince,jdbcType=VARCHAR}, ",
+            "#{item.senderCity,jdbcType=VARCHAR}, #{item.senderCounty,jdbcType=VARCHAR}, ",
+            "#{item.senderAddress,jdbcType=VARCHAR}, #{item.reciverName,jdbcType=VARCHAR}, ",
+            "#{item.reciverMobileOne,jdbcType=VARCHAR}, #{item.reciverMobileTwo,jdbcType=VARCHAR}, ",
+            "#{item.reciverProvince,jdbcType=VARCHAR}, #{item.reciverCity,jdbcType=VARCHAR}, ",
+            "#{item.reciverCounty,jdbcType=VARCHAR}, #{item.reciverAddress,jdbcType=VARCHAR}, ",
+            "#{item.operationNo,jdbcType=VARCHAR}, #{item.operationName,jdbcType=VARCHAR}, #{item.operationTime,jdbcType=TIMESTAMP},",
+            "#{item.cityWideFlag,jdbcType=INTEGER},0, ",
+//            "#{item.sortingStatus,jdbcType=INTEGER},",
+            "#{item.remark,jdbcType=VARCHAR}, #{item.modifyTime,jdbcType=TIMESTAMP}, ",
+            "#{item.createTime,jdbcType=TIMESTAMP})",
+            "</foreach>",
+            "</script>"
+    })
+    int batchInsert(@Param("pscSortingMatchingList") List<PostWebPscOrderOriginal> pscSortingMatchingList);
 }
