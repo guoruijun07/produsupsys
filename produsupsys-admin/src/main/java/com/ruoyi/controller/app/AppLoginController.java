@@ -1,4 +1,4 @@
-package com.ruoyi.app.controller;
+package com.ruoyi.controller.app;
 
 /**
  * @author GuoRJ
