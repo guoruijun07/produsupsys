@@ -1,20 +1,18 @@
 package com.ruoyi.common.mapper;
 
-import com.ruoyi.common.bean.po.PostWebPscOrderOriginal;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-
-import java.util.Date;
+import com.ruoyi.common.bean.po.PostPscAddressOriginal;
 import java.util.List;
 
-public interface PostWebPscOrderOriginalMapper {
+public interface PostPscAddressOriginalMapper {
 
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_psc_order_original",
+        "delete from post_psc_address_original",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -24,7 +22,7 @@ public interface PostWebPscOrderOriginalMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_psc_order_original (id, batch_no, ",
+        "insert into post_psc_address_original (id, batch_no, ",
         "order_no, sender_name, ",
         "sender_mobile_one, sender_mobile_two, ",
         "sender_province, sender_city, ",
@@ -51,7 +49,7 @@ public interface PostWebPscOrderOriginalMapper {
         "#{remark,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, ",
         "#{createTime,jdbcType=TIMESTAMP})"
     })
-    int insert(PostWebPscOrderOriginal record);
+    int insert(PostPscAddressOriginal record);
 
     /**
      *
@@ -64,7 +62,7 @@ public interface PostWebPscOrderOriginalMapper {
         "reciver_mobile_two, reciver_province, reciver_city, reciver_county, reciver_address, ",
         "operation_no, operation_name, operation_time, city_wide_flag, sorting_status, ",
         "remark, modify_time, create_time",
-        "from post_web_psc_order_original",
+        "from post_psc_address_original",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -94,15 +92,15 @@ public interface PostWebPscOrderOriginalMapper {
         @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    PostWebPscOrderOriginal selectByPrimaryKey(Integer id);
-
+    PostPscAddressOriginal selectByPrimaryKey(Integer id);
+    
 
     /**
      *
      * @mbggenerated
      */
     @Update({
-        "update post_web_psc_order_original",
+        "update post_psc_address_original",
         "set batch_no = #{batchNo,jdbcType=VARCHAR},",
           "order_no = #{orderNo,jdbcType=VARCHAR},",
           "sender_name = #{senderName,jdbcType=VARCHAR},",
@@ -129,45 +127,7 @@ public interface PostWebPscOrderOriginalMapper {
           "create_time = #{createTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(PostWebPscOrderOriginal record);
-
-    /**
-     *
-     * @mbggenerated
-     */
-    @Insert({
-            "<script>",
-            "insert into tb_order_original_info (batch_no, ",
-            "order_no, sender_name, ",
-            "sender_mobile_one, sender_mobile_two, ",
-            "sender_province, sender_city, ",
-            "sender_county, sender_address, ",
-            "reciver_name, reciver_mobile_one, ",
-            "reciver_mobile_two, reciver_province, ",
-            "reciver_city, reciver_county, ",
-            "reciver_address, operation_no, ",
-            "operation_name, operation_time, ",
-            "city_wide_flag, sorting_status, ",
-            "remark, modify_time, ",
-            "create_time)",
-            "values " ,
-            "<foreach collection='postWebPscOrderOriginalList' item='item' index='index' separator=','>",
-            "(#{item.batchNo,jdbcType=VARCHAR}, #{item.orderNo,jdbcType=VARCHAR},",
-            "#{item.senderName,jdbcType=VARCHAR}, #{item.senderMobileOne,jdbcType=VARCHAR}, ",
-            "#{item.senderMobileTwo,jdbcType=VARCHAR}, #{item.senderProvince,jdbcType=VARCHAR}, ",
-            "#{item.senderCity,jdbcType=VARCHAR}, #{item.senderCounty,jdbcType=VARCHAR}, ",
-            "#{item.senderAddress,jdbcType=VARCHAR}, #{item.reciverName,jdbcType=VARCHAR}, ",
-            "#{item.reciverMobileOne,jdbcType=VARCHAR}, #{item.reciverMobileTwo,jdbcType=VARCHAR}, ",
-            "#{item.reciverProvince,jdbcType=VARCHAR}, #{item.reciverCity,jdbcType=VARCHAR}, ",
-            "#{item.reciverCounty,jdbcType=VARCHAR}, #{item.reciverAddress,jdbcType=VARCHAR}, ",
-            "#{item.operationNo,jdbcType=VARCHAR}, #{item.operationName,jdbcType=VARCHAR}, #{item.operationTime,jdbcType=TIMESTAMP},",
-            "#{item.cityWideFlag,jdbcType=INTEGER}, #{item.sortingStatus,jdbcType=INTEGER}, ",
-            "#{item.remark,jdbcType=VARCHAR}, #{item.modifyTime,jdbcType=TIMESTAMP}, ",
-            "#{item.createTime,jdbcType=TIMESTAMP})",
-            "</foreach>",
-            "</script>"
-    })
-    int batchInsert(@Param("postWebPscOrderOriginalList") List<PostWebPscOrderOriginal> postWebPscOrderOriginalList);
+    int updateByPrimaryKey(PostPscAddressOriginal record);
 
     /**
      *
@@ -180,7 +140,7 @@ public interface PostWebPscOrderOriginalMapper {
             "reciver_mobile_two, reciver_province, reciver_city, reciver_county, reciver_address, ",
             "operation_no, operation_name, operation_time, city_wide_flag, sorting_status, ",
             "remark, modify_time, create_time",
-            "from tb_order_original_info",
+            "from post_psc_address_original",
             "where batch_no = #{batchNo,jdbcType=VARCHAR}"
     })
     @ConstructorArgs({
@@ -203,12 +163,51 @@ public interface PostWebPscOrderOriginalMapper {
             @Arg(column="reciver_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
             @Arg(column="operation_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
             @Arg(column="operation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="operation_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="operation_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
             @Arg(column="city_wide_flag", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
             @Arg(column="sorting_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
             @Arg(column="remark", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="modify_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
-            @Arg(column="create_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP)
+            @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    List<PostWebPscOrderOriginal> selectByBatchNo(String batchNo);
+    List<PostPscAddressOriginal> selectByBatchNo(String batchNo);
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Insert({
+            "<script>",
+            "insert into post_psc_address_original (batch_no, ",
+            "order_no, sender_name, ",
+            "sender_mobile_one, sender_mobile_two, ",
+            "sender_province, sender_city, ",
+            "sender_county, sender_address, ",
+            "reciver_name, reciver_mobile_one, ",
+            "reciver_mobile_two, reciver_province, ",
+            "reciver_city, reciver_county, ",
+            "reciver_address, operation_no, ",
+            "operation_name, operation_time, ",
+            "city_wide_flag, sorting_status, ",
+            "remark, modify_time, ",
+            "create_time)",
+            "values " ,
+            "<foreach collection='postPscAddressOriginalList' item='item' index='index' separator=','>",
+            "(#{item.batchNo,jdbcType=VARCHAR}, #{item.orderNo,jdbcType=VARCHAR},",
+            "#{item.senderName,jdbcType=VARCHAR}, #{item.senderMobileOne,jdbcType=VARCHAR}, ",
+            "#{item.senderMobileTwo,jdbcType=VARCHAR}, #{item.senderProvince,jdbcType=VARCHAR}, ",
+            "#{item.senderCity,jdbcType=VARCHAR}, #{item.senderCounty,jdbcType=VARCHAR}, ",
+            "#{item.senderAddress,jdbcType=VARCHAR}, #{item.reciverName,jdbcType=VARCHAR}, ",
+            "#{item.reciverMobileOne,jdbcType=VARCHAR}, #{item.reciverMobileTwo,jdbcType=VARCHAR}, ",
+            "#{item.reciverProvince,jdbcType=VARCHAR}, #{item.reciverCity,jdbcType=VARCHAR}, ",
+            "#{item.reciverCounty,jdbcType=VARCHAR}, #{item.reciverAddress,jdbcType=VARCHAR}, ",
+            "#{item.operationNo,jdbcType=VARCHAR}, #{item.operationName,jdbcType=VARCHAR}, #{item.operationTime,jdbcType=TIMESTAMP},",
+            "#{item.cityWideFlag,jdbcType=INTEGER}, #{item.sortingStatus,jdbcType=INTEGER}, ",
+            "#{item.remark,jdbcType=VARCHAR}, #{item.modifyTime,jdbcType=TIMESTAMP}, ",
+            "#{item.createTime,jdbcType=TIMESTAMP})",
+            "</foreach>",
+            "</script>"
+    })
+    int batchInsert(@Param("postPscAddressOriginalList") List<PostPscAddressOriginal> postPscAddressOriginalList);
+    
 }

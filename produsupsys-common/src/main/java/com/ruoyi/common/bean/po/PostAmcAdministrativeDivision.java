@@ -1,6 +1,6 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebAmcAdministrativeDivision {
+public class PostAmcAdministrativeDivision {
     /**
      *  id
      */
@@ -40,7 +40,7 @@ public class PostWebAmcAdministrativeDivision {
      *
      * @mbggenerated
      */
-    public PostWebAmcAdministrativeDivision(Integer id, String provicneName, String provicneCode, String cityName, String cityCode, String countyName, String countyCode) {
+    public PostAmcAdministrativeDivision(Integer id, String provicneName, String provicneCode, String cityName, String cityCode, String countyName, String countyCode) {
         this.id = id;
         this.provicneName = provicneName;
         this.provicneCode = provicneCode;
@@ -54,7 +54,7 @@ public class PostWebAmcAdministrativeDivision {
      *
      * @mbggenerated
      */
-    public PostWebAmcAdministrativeDivision() {
+    public PostAmcAdministrativeDivision() {
         super();
     }
 

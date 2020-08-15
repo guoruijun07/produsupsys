@@ -1,7 +1,5 @@
 package com.ruoyi.service;
 
-import com.ruoyi.common.bean.po.PostWebQpsDetailTrajectoryOutside;
-
 import java.util.List;
 
 /**

@@ -1,15 +1,15 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebPscSorting {
+public class PostPscBaseSorting {
     /**
      * id id
      */
     private Integer id;
 
     /**
-     * 机构号 org_no
+     * 机构号 org_num
      */
-    private Integer orgNo;
+    private Integer orgNum;
 
     /**
      * 机构名称 org_name
@@ -80,9 +80,9 @@ public class PostWebPscSorting {
      *
      * @mbggenerated
      */
-    public PostWebPscSorting(Integer id, Integer orgNo, String orgName, String sortingName, String distribuCenter, String dlvName, String area, String areaNum, String marking, String remark, String receive1, String receive2, String receive3, String receive4, String receive5) {
+    public PostPscBaseSorting(Integer id, Integer orgNum, String orgName, String sortingName, String distribuCenter, String dlvName, String area, String areaNum, String marking, String remark, String receive1, String receive2, String receive3, String receive4, String receive5) {
         this.id = id;
-        this.orgNo = orgNo;
+        this.orgNum = orgNum;
         this.orgName = orgName;
         this.sortingName = sortingName;
         this.distribuCenter = distribuCenter;
@@ -102,7 +102,7 @@ public class PostWebPscSorting {
      *
      * @mbggenerated
      */
-    public PostWebPscSorting() {
+    public PostPscBaseSorting() {
         super();
     }
 
@@ -127,19 +127,19 @@ public class PostWebPscSorting {
     /**
      * 机构号
     
-     * @return org_no 机构号
+     * @return org_num 机构号
      */
-    public Integer getOrgNo() {
-        return orgNo;
+    public Integer getOrgNum() {
+        return orgNum;
     }
 
     /**
      * 机构号
     
-     * @param orgNo 机构号
+     * @param orgNum 机构号
      */
-    public void setOrgNo(Integer orgNo) {
-        this.orgNo = orgNo;
+    public void setOrgNum(Integer orgNum) {
+        this.orgNum = orgNum;
     }
 
     /**

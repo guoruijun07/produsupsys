@@ -4,14 +4,14 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import com.ruoyi.common.bean.po.PostAmcAdministrativeDivision;
 
-public interface PostWebAmcAdministrativeDivisionMapper {
+public interface PostAmcAdministrativeDivisionMapper {
 
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_amc_administrative_division",
+        "delete from post_amc_administrative_division",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -21,7 +21,7 @@ public interface PostWebAmcAdministrativeDivisionMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_amc_administrative_division (id, provicne_name, ",
+        "insert into post_amc_administrative_division (id, provicne_name, ",
         "provicne_code, city_name, ",
         "city_code, county_name, ",
         "county_code)",
@@ -32,6 +32,7 @@ public interface PostWebAmcAdministrativeDivisionMapper {
     })
     int insert(PostAmcAdministrativeDivision record);
 
+   
     /**
      *
      * @mbggenerated
@@ -39,7 +40,7 @@ public interface PostWebAmcAdministrativeDivisionMapper {
     @Select({
         "select",
         "id, provicne_name, provicne_code, city_name, city_code, county_name, county_code",
-        "from post_web_amc_administrative_division",
+        "from post_amc_administrative_division",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -58,7 +59,7 @@ public interface PostWebAmcAdministrativeDivisionMapper {
      * @mbggenerated
      */
     @Update({
-        "update post_web_amc_administrative_division",
+        "update post_amc_administrative_division",
         "set provicne_name = #{provicneName,jdbcType=VARCHAR},",
           "provicne_code = #{provicneCode,jdbcType=VARCHAR},",
           "city_name = #{cityName,jdbcType=VARCHAR},",

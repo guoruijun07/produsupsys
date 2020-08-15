@@ -1,18 +1,18 @@
 package com.ruoyi.common.mapper;
 
-import com.ruoyi.common.bean.po.PostWebPscAddressBatchExport;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-
 import java.util.List;
+import com.ruoyi.common.bean.po.PostPscAddressMatchingExport;
 
-public interface PostWebPscAddressBatchExportMapper {
+public interface PostPscAddressMatchingExportMapper {
+
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_psc_address_batch_export",
+        "delete from post_psc_address_matching_export",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -22,7 +22,7 @@ public interface PostWebPscAddressBatchExportMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_psc_address_batch_export (id, batch_no, ",
+        "insert into post_psc_address_matching_export (id, batch_no, ",
         "file_name, total_num, ",
         "success_num, money, ",
         "status, user_id, ",
@@ -33,8 +33,8 @@ public interface PostWebPscAddressBatchExportMapper {
         "#{status,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, ",
         "#{modifyTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})"
     })
-    int insert(PostWebPscAddressBatchExport record);
-
+    int insert(PostPscAddressMatchingExport record);
+    
 
     /**
      *
@@ -44,7 +44,7 @@ public interface PostWebPscAddressBatchExportMapper {
         "select",
         "id, batch_no, file_name, total_num, success_num, money, status, user_id, modify_time, ",
         "create_time",
-        "from post_web_psc_address_batch_export",
+        "from post_psc_address_matching_export",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -59,14 +59,14 @@ public interface PostWebPscAddressBatchExportMapper {
         @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    PostWebPscAddressBatchExport selectByPrimaryKey(Integer id);
+    PostPscAddressMatchingExport selectByPrimaryKey(Integer id);
 
     /**
      *
      * @mbggenerated
      */
     @Update({
-        "update post_web_psc_address_batch_export",
+        "update post_psc_address_matching_export",
         "set batch_no = #{batchNo,jdbcType=VARCHAR},",
           "file_name = #{fileName,jdbcType=VARCHAR},",
           "total_num = #{totalNum,jdbcType=INTEGER},",
@@ -78,7 +78,7 @@ public interface PostWebPscAddressBatchExportMapper {
           "create_time = #{createTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(PostWebPscAddressBatchExport record);
+    int updateByPrimaryKey(PostPscAddressMatchingExport record);
 
     /**
      *
@@ -87,7 +87,7 @@ public interface PostWebPscAddressBatchExportMapper {
     @Select({
             "select",
             "id, batch_no, file_name, total_num, success_num, money, status, user_id, modify_time,create_time ",
-            "from post_web_psc_address_batch_export",
+            "from post_psc_address_batch_export",
             "where user_id = #{id,jdbcType=BIGINT} "
     })
     @ConstructorArgs({
@@ -102,5 +102,6 @@ public interface PostWebPscAddressBatchExportMapper {
             @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
             @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    List<PostWebPscAddressBatchExport> selectByUserId(@Param("userId") Long userId);
+    List<PostPscAddressMatchingExport> selectByUserId(@Param("userId") Long userId);
+    
 }

@@ -1,6 +1,6 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebQpsDetailTrajectoryOutside {
+public class PostQpsOutsideDetailTrajectory {
     /**
      *  id
      */
@@ -65,7 +65,7 @@ public class PostWebQpsDetailTrajectoryOutside {
      *
      * @mbggenerated
      */
-    public PostWebQpsDetailTrajectoryOutside(Integer id, String traceno, java.util.Date optime, String opcode, String opname, String opdesc, String oporgprovname, String oporgcity, String oporgcode, String oporgname, String operatorno, String operatorname) {
+    public PostQpsOutsideDetailTrajectory(Integer id, String traceno, java.util.Date optime, String opcode, String opname, String opdesc, String oporgprovname, String oporgcity, String oporgcode, String oporgname, String operatorno, String operatorname) {
         this.id = id;
         this.traceno = traceno;
         this.optime = optime;
@@ -84,7 +84,7 @@ public class PostWebQpsDetailTrajectoryOutside {
      *
      * @mbggenerated
      */
-    public PostWebQpsDetailTrajectoryOutside() {
+    public PostQpsOutsideDetailTrajectory() {
         super();
     }
 

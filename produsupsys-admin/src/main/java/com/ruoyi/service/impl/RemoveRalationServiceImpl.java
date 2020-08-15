@@ -1,6 +1,5 @@
 package com.ruoyi.service.impl;
 
-import com.ruoyi.common.bean.po.PostWebDlvBindingRemoveRalation;
 import com.ruoyi.service.RemoveRalationService;
 
 import java.io.IOException;

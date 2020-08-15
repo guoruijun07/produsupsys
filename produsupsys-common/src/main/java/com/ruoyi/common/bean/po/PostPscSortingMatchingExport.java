@@ -1,6 +1,8 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebPscBatchMatchingExport {
+import java.util.Date;
+
+public class PostPscSortingMatchingExport {
     /**
      * 主建id id
      */
@@ -34,7 +36,7 @@ public class PostWebPscBatchMatchingExport {
     /**
      * 创建时间 create_time
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     /**
      * 备注 remark
@@ -45,7 +47,7 @@ public class PostWebPscBatchMatchingExport {
      *
      * @mbggenerated
      */
-    public PostWebPscBatchMatchingExport(Integer id, Integer userId, String fileName, Integer totalNum, Integer sucessNum, Double money, java.util.Date createTime, String remark) {
+    public PostPscSortingMatchingExport(Integer id, Integer userId, String fileName, Integer totalNum, Integer sucessNum, Double money, Date createTime, String remark) {
         this.id = id;
         this.userId = userId;
         this.fileName = fileName;
@@ -60,7 +62,7 @@ public class PostWebPscBatchMatchingExport {
      *
      * @mbggenerated
      */
-    public PostWebPscBatchMatchingExport() {
+    public PostPscSortingMatchingExport() {
         super();
     }
 
@@ -177,7 +179,7 @@ public class PostWebPscBatchMatchingExport {
 
      * @return create_time 创建时间
      */
-    public java.util.Date getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
@@ -186,7 +188,7 @@ public class PostWebPscBatchMatchingExport {
 
      * @param createTime 创建时间
      */
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

@@ -2,16 +2,16 @@ package com.ruoyi.common.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.postWebBicUserBinding;
+import com.ruoyi.common.bean.po.PostBicUserBinding;
 
-public interface postWebBicUserBindingMapper {
+public interface PostBicUserBindingMapper {
 
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_bic_user_binding",
+        "delete from post_bic_user_binding",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -21,7 +21,7 @@ public interface postWebBicUserBindingMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_bic_user_binding (id, userid, ",
+        "insert into post_bic_user_binding (id, userid, ",
         "unitID, validitytime, ",
         "callrestrict, calldisplay, ",
         "callrecording)",
@@ -30,8 +30,8 @@ public interface postWebBicUserBindingMapper {
         "#{callrestrict,jdbcType=VARCHAR}, #{calldisplay,jdbcType=VARCHAR}, ",
         "#{callrecording,jdbcType=VARCHAR})"
     })
-    int insert(postWebBicUserBinding record);
-
+    int insert(com.ruoyi.common.bean.po.PostBicUserBinding record);
+    
 
     /**
      *
@@ -40,7 +40,7 @@ public interface postWebBicUserBindingMapper {
     @Select({
         "select",
         "id, userid, unitID, validitytime, callrestrict, calldisplay, callrecording",
-        "from post_web_bic_user_binding",
+        "from post_bic_user_binding",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -52,15 +52,16 @@ public interface postWebBicUserBindingMapper {
         @Arg(column="calldisplay", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="callrecording", javaType= String.class, jdbcType=JdbcType.VARCHAR)
     })
-    postWebBicUserBinding selectByPrimaryKey(Integer id);
+    com.ruoyi.common.bean.po.PostBicUserBinding selectByPrimaryKey(Integer id);
 
+    
 
     /**
      *
      * @mbggenerated
      */
     @Update({
-        "update post_web_bic_user_binding",
+        "update post_bic_user_binding",
         "set userid = #{userid,jdbcType=INTEGER},",
           "unitID = #{unitid,jdbcType=INTEGER},",
           "validitytime = #{validitytime,jdbcType=INTEGER},",
@@ -69,5 +70,5 @@ public interface postWebBicUserBindingMapper {
           "callrecording = #{callrecording,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(postWebBicUserBinding record);
+    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostBicUserBinding record);
 }

@@ -1,6 +1,8 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebDlvBindingRemoveRalation {
+import  java.util.Date;
+
+public class PostDlvBindingRemoveRalation {
     /**
      * id id
      */
@@ -29,12 +31,12 @@ public class PostWebDlvBindingRemoveRalation {
     /**
      * 订购时间 subts
      */
-    private java.util.Date subts;
+    private Date subts;
 
     /**
      * 解绑时间 dissubts
      */
-    private java.util.Date dissubts;
+    private Date dissubts;
 
     /**
      * 来话控制
@@ -112,14 +114,11 @@ public class PostWebDlvBindingRemoveRalation {
      */
     private java.util.Date modifyTime;
 
-    private String result;
-
-    private String code;
     /**
      *
      * @mbggenerated
      */
-    public PostWebDlvBindingRemoveRalation(Integer id, Long unitid, String prtms, String smbms, String otherms, java.util.Date subts, java.util.Date dissubts, String callrestrict, String calldisplay, String callrecording, java.util.Date validitytime, String uuidinpartner, String usertype, String regphone, String status, Integer source, Integer menu, Integer userid, String username, java.util.Date createTime, java.util.Date modifyTime) {
+    public PostDlvBindingRemoveRalation(Integer id, Long unitid, String prtms, String smbms, String otherms, java.util.Date subts, java.util.Date dissubts, String callrestrict, String calldisplay, String callrecording, java.util.Date validitytime, String uuidinpartner, String usertype, String regphone, String status, Integer source, Integer menu, Integer userid, String username, java.util.Date createTime, java.util.Date modifyTime) {
         this.id = id;
         this.unitid = unitid;
         this.prtms = prtms;
@@ -147,7 +146,7 @@ public class PostWebDlvBindingRemoveRalation {
      *
      * @mbggenerated
      */
-    public PostWebDlvBindingRemoveRalation() {
+    public PostDlvBindingRemoveRalation() {
         super();
     }
 
@@ -246,7 +245,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @return subts 订购时间
      */
-    public java.util.Date getSubts() {
+    public Date getSubts() {
         return subts;
     }
 
@@ -255,7 +254,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @param subts 订购时间
      */
-    public void setSubts(java.util.Date subts) {
+    public void setSubts(Date subts) {
         this.subts = subts;
     }
 
@@ -264,7 +263,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @return dissubts 解绑时间
      */
-    public java.util.Date getDissubts() {
+    public Date getDissubts() {
         return dissubts;
     }
 
@@ -273,7 +272,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @param dissubts 解绑时间
      */
-    public void setDissubts(java.util.Date dissubts) {
+    public void setDissubts(Date dissubts) {
         this.dissubts = dissubts;
     }
 
@@ -356,7 +355,7 @@ public class PostWebDlvBindingRemoveRalation {
  如调用本接口时时间为：2017-01-01 10:32:03， validitytime=5，则此安全号在2017-01-06 10:32:03失效；
  或者填写具体时间，例如validitytime=2018-01-01 01:00:00
      */
-    public java.util.Date getValiditytime() {
+    public Date getValiditytime() {
         return validitytime;
     }
 
@@ -369,7 +368,7 @@ public class PostWebDlvBindingRemoveRalation {
  如调用本接口时时间为：2017-01-01 10:32:03， validitytime=5，则此安全号在2017-01-06 10:32:03失效；
  或者填写具体时间，例如validitytime=2018-01-01 01:00:00
      */
-    public void setValiditytime(java.util.Date validitytime) {
+    public void setValiditytime(Date validitytime) {
         this.validitytime = validitytime;
     }
 
@@ -531,7 +530,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @param createTime 创建时间
      */
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
@@ -549,23 +548,7 @@ public class PostWebDlvBindingRemoveRalation {
 
      * @param modifyTime 更新时间
      */
-    public void setModifyTime(java.util.Date modifyTime) {
+    public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 }

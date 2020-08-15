@@ -1,8 +1,9 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebPscSortingMatching {
+import java.util.Date;
+public class PostPscAddressOriginal {
     /**
-     * 主建id id
+     * 主建 id
      */
     private Integer id;
 
@@ -87,66 +88,6 @@ public class PostWebPscSortingMatching {
     private String reciverAddress;
 
     /**
-     * 大头笔 datoubi
-     */
-    private String datoubi;
-
-    /**
-     * 大头笔编码 datoubi_code
-     */
-    private String datoubiCode;
-
-    /**
-     * 集包地名称 consolidation_name
-     */
-    private String consolidationName;
-
-    /**
-     * 集包地编码 consolidation_code
-     */
-    private String consolidationCode;
-
-    /**
-     * 四级分拣码 level_four_sorting_name
-     */
-    private String levelFourSortingName;
-
-    /**
-     * 分拣码 sorting_name
-     */
-    private String sortingName;
-
-    /**
-     * 标识 marking
-     */
-    private String marking;
-
-    /**
-     * 集散中心 distribu_center
-     */
-    private String distribuCenter;
-
-    /**
-     * 投递部代码 dlv_no
-     */
-    private String dlvNo;
-
-    /**
-     * 投递部名称 dlv_name
-     */
-    private String dlvName;
-
-    /**
-     * 机构代码 org_no
-     */
-    private String orgNo;
-
-    /**
-     * 机构名称 org_name
-     */
-    private String orgName;
-
-    /**
      * 操作员id operation_no
      */
     private String operationNo;
@@ -159,20 +100,15 @@ public class PostWebPscSortingMatching {
     /**
      * 操作时间 operation_time
      */
-    private java.util.Date operationTime;
+    private Date operationTime;
 
     /**
-     * 集散中心匹配状态:1已匹配、0未匹配 matching_distribu_center_status
-     */
-    private Integer matchingDistribuCenterStatus;
-
-    /**
-     * 同城标识:1同城，0外阜 city_wide_flag
+     * 同城标识（1同城，0外阜） city_wide_flag
      */
     private Integer cityWideFlag;
 
     /**
-     * 分拣码匹配状态：0：匹配失败 1：已匹配成功 sorting_status
+     * 分拣码匹配状态（1已匹配、0未匹配） sorting_status
      */
     private Integer sortingStatus;
 
@@ -184,18 +120,18 @@ public class PostWebPscSortingMatching {
     /**
      * 修改时间 modify_time
      */
-    private java.util.Date modifyTime;
+    private Date modifyTime;
 
     /**
      * 创建时间 create_time
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     /**
      *
      * @mbggenerated
      */
-    public PostWebPscSortingMatching(Integer id, String batchNo, String orderNo, String senderName, String senderMobileOne, String senderMobileTwo, String senderProvince, String senderCity, String senderCounty, String senderAddress, String reciverName, String reciverMobileOne, String reciverMobileTwo, String reciverProvince, String reciverCity, String reciverCounty, String reciverAddress, String datoubi, String datoubiCode, String consolidationName, String consolidationCode, String levelFourSortingName, String sortingName, String marking, String distribuCenter, String dlvNo, String dlvName, String orgNo, String orgName, String operationNo, String operationName, java.util.Date operationTime, Integer matchingDistribuCenterStatus, Integer cityWideFlag, Integer sortingStatus, String remark, java.util.Date modifyTime, java.util.Date createTime) {
+    public PostPscAddressOriginal(Integer id, String batchNo, String orderNo, String senderName, String senderMobileOne, String senderMobileTwo, String senderProvince, String senderCity, String senderCounty, String senderAddress, String reciverName, String reciverMobileOne, String reciverMobileTwo, String reciverProvince, String reciverCity, String reciverCounty, String reciverAddress, String operationNo, String operationName, Date operationTime, Integer cityWideFlag, Integer sortingStatus, String remark, Date modifyTime, Date createTime) {
         this.id = id;
         this.batchNo = batchNo;
         this.orderNo = orderNo;
@@ -213,22 +149,9 @@ public class PostWebPscSortingMatching {
         this.reciverCity = reciverCity;
         this.reciverCounty = reciverCounty;
         this.reciverAddress = reciverAddress;
-        this.datoubi = datoubi;
-        this.datoubiCode = datoubiCode;
-        this.consolidationName = consolidationName;
-        this.consolidationCode = consolidationCode;
-        this.levelFourSortingName = levelFourSortingName;
-        this.sortingName = sortingName;
-        this.marking = marking;
-        this.distribuCenter = distribuCenter;
-        this.dlvNo = dlvNo;
-        this.dlvName = dlvName;
-        this.orgNo = orgNo;
-        this.orgName = orgName;
         this.operationNo = operationNo;
         this.operationName = operationName;
         this.operationTime = operationTime;
-        this.matchingDistribuCenterStatus = matchingDistribuCenterStatus;
         this.cityWideFlag = cityWideFlag;
         this.sortingStatus = sortingStatus;
         this.remark = remark;
@@ -240,23 +163,23 @@ public class PostWebPscSortingMatching {
      *
      * @mbggenerated
      */
-    public PostWebPscSortingMatching() {
+    public PostPscAddressOriginal() {
         super();
     }
 
     /**
-     * 主建id
+     * 主建
 
-     * @return id 主建id
+     * @return id 主建
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 主建id
+     * 主建
 
-     * @param id 主建id
+     * @param id 主建
      */
     public void setId(Integer id) {
         this.id = id;
@@ -551,222 +474,6 @@ public class PostWebPscSortingMatching {
     }
 
     /**
-     * 大头笔
-
-     * @return datoubi 大头笔
-     */
-    public String getDatoubi() {
-        return datoubi;
-    }
-
-    /**
-     * 大头笔
-
-     * @param datoubi 大头笔
-     */
-    public void setDatoubi(String datoubi) {
-        this.datoubi = datoubi == null ? null : datoubi.trim();
-    }
-
-    /**
-     * 大头笔编码
-
-     * @return datoubi_code 大头笔编码
-     */
-    public String getDatoubiCode() {
-        return datoubiCode;
-    }
-
-    /**
-     * 大头笔编码
-
-     * @param datoubiCode 大头笔编码
-     */
-    public void setDatoubiCode(String datoubiCode) {
-        this.datoubiCode = datoubiCode == null ? null : datoubiCode.trim();
-    }
-
-    /**
-     * 集包地名称
-
-     * @return consolidation_name 集包地名称
-     */
-    public String getConsolidationName() {
-        return consolidationName;
-    }
-
-    /**
-     * 集包地名称
-
-     * @param consolidationName 集包地名称
-     */
-    public void setConsolidationName(String consolidationName) {
-        this.consolidationName = consolidationName == null ? null : consolidationName.trim();
-    }
-
-    /**
-     * 集包地编码
-
-     * @return consolidation_code 集包地编码
-     */
-    public String getConsolidationCode() {
-        return consolidationCode;
-    }
-
-    /**
-     * 集包地编码
-
-     * @param consolidationCode 集包地编码
-     */
-    public void setConsolidationCode(String consolidationCode) {
-        this.consolidationCode = consolidationCode == null ? null : consolidationCode.trim();
-    }
-
-    /**
-     * 四级分拣码
-
-     * @return level_four_sorting_name 四级分拣码
-     */
-    public String getLevelFourSortingName() {
-        return levelFourSortingName;
-    }
-
-    /**
-     * 四级分拣码
-
-     * @param levelFourSortingName 四级分拣码
-     */
-    public void setLevelFourSortingName(String levelFourSortingName) {
-        this.levelFourSortingName = levelFourSortingName == null ? null : levelFourSortingName.trim();
-    }
-
-    /**
-     * 分拣码
-
-     * @return sorting_name 分拣码
-     */
-    public String getSortingName() {
-        return sortingName;
-    }
-
-    /**
-     * 分拣码
-
-     * @param sortingName 分拣码
-     */
-    public void setSortingName(String sortingName) {
-        this.sortingName = sortingName == null ? null : sortingName.trim();
-    }
-
-    /**
-     * 标识
-
-     * @return marking 标识
-     */
-    public String getMarking() {
-        return marking;
-    }
-
-    /**
-     * 标识
-
-     * @param marking 标识
-     */
-    public void setMarking(String marking) {
-        this.marking = marking == null ? null : marking.trim();
-    }
-
-    /**
-     * 集散中心
-
-     * @return distribu_center 集散中心
-     */
-    public String getDistribuCenter() {
-        return distribuCenter;
-    }
-
-    /**
-     * 集散中心
-
-     * @param distribuCenter 集散中心
-     */
-    public void setDistribuCenter(String distribuCenter) {
-        this.distribuCenter = distribuCenter == null ? null : distribuCenter.trim();
-    }
-
-    /**
-     * 投递部代码
-
-     * @return dlv_no 投递部代码
-     */
-    public String getDlvNo() {
-        return dlvNo;
-    }
-
-    /**
-     * 投递部代码
-
-     * @param dlvNo 投递部代码
-     */
-    public void setDlvNo(String dlvNo) {
-        this.dlvNo = dlvNo == null ? null : dlvNo.trim();
-    }
-
-    /**
-     * 投递部名称
-
-     * @return dlv_name 投递部名称
-     */
-    public String getDlvName() {
-        return dlvName;
-    }
-
-    /**
-     * 投递部名称
-
-     * @param dlvName 投递部名称
-     */
-    public void setDlvName(String dlvName) {
-        this.dlvName = dlvName == null ? null : dlvName.trim();
-    }
-
-    /**
-     * 机构代码
-
-     * @return org_no 机构代码
-     */
-    public String getOrgNo() {
-        return orgNo;
-    }
-
-    /**
-     * 机构代码
-
-     * @param orgNo 机构代码
-     */
-    public void setOrgNo(String orgNo) {
-        this.orgNo = orgNo == null ? null : orgNo.trim();
-    }
-
-    /**
-     * 机构名称
-
-     * @return org_name 机构名称
-     */
-    public String getOrgName() {
-        return orgName;
-    }
-
-    /**
-     * 机构名称
-
-     * @param orgName 机构名称
-     */
-    public void setOrgName(String orgName) {
-        this.orgName = orgName == null ? null : orgName.trim();
-    }
-
-    /**
      * 操作员id
 
      * @return operation_no 操作员id
@@ -807,7 +514,7 @@ public class PostWebPscSortingMatching {
 
      * @return operation_time 操作时间
      */
-    public java.util.Date getOperationTime() {
+    public Date getOperationTime() {
         return operationTime;
     }
 
@@ -816,59 +523,41 @@ public class PostWebPscSortingMatching {
 
      * @param operationTime 操作时间
      */
-    public void setOperationTime(java.util.Date operationTime) {
+    public void setOperationTime(Date operationTime) {
         this.operationTime = operationTime;
     }
 
     /**
-     * 集散中心匹配状态:1已匹配、0未匹配
+     * 同城标识（1同城，0外阜）
 
-     * @return matching_distribu_center_status 集散中心匹配状态:1已匹配、0未匹配
-     */
-    public Integer getMatchingDistribuCenterStatus() {
-        return matchingDistribuCenterStatus;
-    }
-
-    /**
-     * 集散中心匹配状态:1已匹配、0未匹配
-
-     * @param matchingDistribuCenterStatus 集散中心匹配状态:1已匹配、0未匹配
-     */
-    public void setMatchingDistribuCenterStatus(Integer matchingDistribuCenterStatus) {
-        this.matchingDistribuCenterStatus = matchingDistribuCenterStatus;
-    }
-
-    /**
-     * 同城标识:1同城，0外阜
-
-     * @return city_wide_flag 同城标识:1同城，0外阜
+     * @return city_wide_flag 同城标识（1同城，0外阜）
      */
     public Integer getCityWideFlag() {
         return cityWideFlag;
     }
 
     /**
-     * 同城标识:1同城，0外阜
+     * 同城标识（1同城，0外阜）
 
-     * @param cityWideFlag 同城标识:1同城，0外阜
+     * @param cityWideFlag 同城标识（1同城，0外阜）
      */
     public void setCityWideFlag(Integer cityWideFlag) {
         this.cityWideFlag = cityWideFlag;
     }
 
     /**
-     * 分拣码匹配状态：0：匹配失败 1：已匹配成功
+     * 分拣码匹配状态（1已匹配、0未匹配）
 
-     * @return sorting_status 分拣码匹配状态：0：匹配失败 1：已匹配成功
+     * @return sorting_status 分拣码匹配状态（1已匹配、0未匹配）
      */
     public Integer getSortingStatus() {
         return sortingStatus;
     }
 
     /**
-     * 分拣码匹配状态：0：匹配失败 1：已匹配成功
+     * 分拣码匹配状态（1已匹配、0未匹配）
 
-     * @param sortingStatus 分拣码匹配状态：0：匹配失败 1：已匹配成功
+     * @param sortingStatus 分拣码匹配状态（1已匹配、0未匹配）
      */
     public void setSortingStatus(Integer sortingStatus) {
         this.sortingStatus = sortingStatus;
@@ -906,7 +595,7 @@ public class PostWebPscSortingMatching {
 
      * @param modifyTime 修改时间
      */
-    public void setModifyTime(java.util.Date modifyTime) {
+    public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
 
@@ -915,7 +604,7 @@ public class PostWebPscSortingMatching {
 
      * @return create_time 创建时间
      */
-    public java.util.Date getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 

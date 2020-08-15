@@ -1,6 +1,6 @@
 package com.ruoyi.common.bean.po;
 
-public class PostWebPpcPrice {
+public class PostPpcPrice {
     /**
      *  id
      */
@@ -9,7 +9,7 @@ public class PostWebPpcPrice {
     /**
      *  user_id
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 菜单: 0:根据数据设备查询 1:匹配查询，2:地址查询，3:面单打印，4:号码呼转 menu
@@ -30,7 +30,7 @@ public class PostWebPpcPrice {
      *
      * @mbggenerated
      */
-    public PostWebPpcPrice(Integer id, Long userId, Integer menu, Integer source, Double price) {
+    public PostPpcPrice(Integer id, Integer userId, Integer menu, Integer source, Double price) {
         this.id = id;
         this.userId = userId;
         this.menu = menu;
@@ -42,7 +42,7 @@ public class PostWebPpcPrice {
      *
      * @mbggenerated
      */
-    public PostWebPpcPrice() {
+    public PostPpcPrice() {
         super();
     }
 
@@ -69,7 +69,7 @@ public class PostWebPpcPrice {
     
      * @return user_id 
      */
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -78,7 +78,7 @@ public class PostWebPpcPrice {
     
      * @param userId 
      */
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

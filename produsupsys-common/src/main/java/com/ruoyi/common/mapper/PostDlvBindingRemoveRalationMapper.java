@@ -2,16 +2,16 @@ package com.ruoyi.common.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostWebDlvBindingRemoveRalation;
+import com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation;
 
-public interface PostWebDlvBindingRemoveRalationMapper {
+public interface PostDlvBindingRemoveRalationMapper {
 
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_dlv_binding_remove_ralation",
+        "delete from post_dlv_binding_remove_ralation",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -21,7 +21,7 @@ public interface PostWebDlvBindingRemoveRalationMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_dlv_binding_remove_ralation (id, unitID, ",
+        "insert into post_dlv_binding_remove_ralation (id, unitID, ",
         "prtms, smbms, otherms, ",
         "subts, dissubts, ",
         "callrestrict, calldisplay, ",
@@ -42,9 +42,8 @@ public interface PostWebDlvBindingRemoveRalationMapper {
         "#{username,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, ",
         "#{modifyTime,jdbcType=TIMESTAMP})"
     })
-    int insert(PostWebDlvBindingRemoveRalation record);
-
-
+    int insert(com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation record);
+    
     /**
      *
      * @mbggenerated
@@ -54,7 +53,7 @@ public interface PostWebDlvBindingRemoveRalationMapper {
         "id, unitID, prtms, smbms, otherms, subts, dissubts, callrestrict, calldisplay, ",
         "callrecording, validitytime, uuidinpartner, usertype, regphone, status, source, ",
         "menu, userid, username, create_time, modify_time",
-        "from post_web_dlv_binding_remove_ralation",
+        "from post_dlv_binding_remove_ralation",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -80,15 +79,14 @@ public interface PostWebDlvBindingRemoveRalationMapper {
         @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    PostWebDlvBindingRemoveRalation selectByPrimaryKey(Integer id);
-
+    com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation selectByPrimaryKey(Integer id);
 
     /**
      *
      * @mbggenerated
      */
     @Update({
-        "update post_web_dlv_binding_remove_ralation",
+        "update post_dlv_binding_remove_ralation",
         "set unitID = #{unitid,jdbcType=BIGINT},",
           "prtms = #{prtms,jdbcType=VARCHAR},",
           "smbms = #{smbms,jdbcType=VARCHAR},",
@@ -111,5 +109,5 @@ public interface PostWebDlvBindingRemoveRalationMapper {
           "modify_time = #{modifyTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(PostWebDlvBindingRemoveRalation record);
+    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation record);
 }

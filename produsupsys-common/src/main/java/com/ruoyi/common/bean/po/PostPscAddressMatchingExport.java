@@ -1,8 +1,9 @@
 package com.ruoyi.common.bean.po;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class PostWebPscAdressBatchMatching {
+public class PostPscAddressMatchingExport {
     /**
      * 主键 id
      */
@@ -31,7 +32,7 @@ public class PostWebPscAdressBatchMatching {
     /**
      * 金额 money
      */
-    private java.math.BigDecimal money;
+    private BigDecimal money;
 
     /**
      * 匹配状态:0,未匹配1,已匹配 status
@@ -57,7 +58,7 @@ public class PostWebPscAdressBatchMatching {
      *
      * @mbggenerated
      */
-    public PostWebPscAdressBatchMatching(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, java.math.BigDecimal money, Integer status, Integer userId, java.util.Date modifyTime, java.util.Date createTime) {
+    public PostPscAddressMatchingExport(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, BigDecimal money, Integer status, Integer userId, Date modifyTime, Date createTime) {
         this.id = id;
         this.batchNo = batchNo;
         this.fileName = fileName;
@@ -74,7 +75,7 @@ public class PostWebPscAdressBatchMatching {
      *
      * @mbggenerated
      */
-    public PostWebPscAdressBatchMatching() {
+    public PostPscAddressMatchingExport() {
         super();
     }
 
@@ -182,7 +183,7 @@ public class PostWebPscAdressBatchMatching {
 
      * @param money 金额
      */
-    public void setMoney(java.math.BigDecimal money) {
+    public void setMoney(BigDecimal money) {
         this.money = money;
     }
 
@@ -236,7 +237,7 @@ public class PostWebPscAdressBatchMatching {
 
      * @param modifyTime 修改时间
      */
-    public void setModifyTime(java.util.Date modifyTime) {
+    public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
 
@@ -245,7 +246,7 @@ public class PostWebPscAdressBatchMatching {
 
      * @return create_time 创建时间
      */
-    public java.util.Date getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
@@ -254,7 +255,7 @@ public class PostWebPscAdressBatchMatching {
 
      * @param createTime 创建时间
      */
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 }

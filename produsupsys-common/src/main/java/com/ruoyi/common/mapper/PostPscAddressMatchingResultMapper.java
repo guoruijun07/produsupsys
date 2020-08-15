@@ -1,22 +1,17 @@
 package com.ruoyi.common.mapper;
 
-import com.ruoyi.common.bean.po.PostWebPscOrderOriginal;
-import com.ruoyi.common.bean.po.PostWebPscSortingMatching;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-
-import java.util.Date;
+import com.ruoyi.common.bean.po.PostPscAddressMatchingResult;
 import java.util.List;
 
-public interface PostWebPscSortingMatchingMapper {
-
-
+public interface PostPscAddressMatchingResultMapper {
     /**
      *
      * @mbggenerated
      */
     @Delete({
-        "delete from post_web_psc_sorting_matching",
+        "delete from post_psc_address_matching_result",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
@@ -26,7 +21,7 @@ public interface PostWebPscSortingMatchingMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into post_web_psc_sorting_matching (id, batch_no, ",
+        "insert into post_psc_address_matching_result (id, batch_no, ",
         "order_no, sender_name, ",
         "sender_mobile_one, sender_mobile_two, ",
         "sender_province, sender_city, ",
@@ -65,8 +60,7 @@ public interface PostWebPscSortingMatchingMapper {
         "#{sortingStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, ",
         "#{modifyTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})"
     })
-    int insert(PostWebPscSortingMatching record);
-
+    int insert(PostPscAddressMatchingResult record);
 
     /**
      *
@@ -81,7 +75,7 @@ public interface PostWebPscSortingMatchingMapper {
         "sorting_name, marking, distribu_center, dlv_no, dlv_name, org_no, org_name, ",
         "operation_no, operation_name, operation_time, matching_distribu_center_status, ",
         "city_wide_flag, sorting_status, remark, modify_time, create_time",
-        "from post_web_psc_sorting_matching",
+        "from post_psc_address_matching_result",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @ConstructorArgs({
@@ -124,15 +118,15 @@ public interface PostWebPscSortingMatchingMapper {
         @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    PostWebPscSortingMatching selectByPrimaryKey(Integer id);
-
+    PostPscAddressMatchingResult selectByPrimaryKey(Integer id);
+    
 
     /**
      *
      * @mbggenerated
      */
     @Update({
-        "update post_web_psc_sorting_matching",
+        "update post_psc_address_matching_result",
         "set batch_no = #{batchNo,jdbcType=VARCHAR},",
           "order_no = #{orderNo,jdbcType=VARCHAR},",
           "sender_name = #{senderName,jdbcType=VARCHAR},",
@@ -172,7 +166,7 @@ public interface PostWebPscSortingMatchingMapper {
           "create_time = #{createTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(PostWebPscSortingMatching record);
+    int updateByPrimaryKey(PostPscAddressMatchingResult record);
 
     /**
      *
@@ -187,7 +181,7 @@ public interface PostWebPscSortingMatchingMapper {
             "sorting_name, marking, distribu_center, dlv_no, dlv_name, org_no, org_name, ",
             "operation_no, operation_name, operation_time, matching_distribu_center_status, ",
             "city_wide_flag,sorting_status, remark, modify_time, create_time",
-            "from tb_sorting_matching_info",
+            "from post_psc_address_matching_result",
             "where batch_no = #{id,jdbcType=VARCHAR}"
     })
     @ConstructorArgs({
@@ -222,15 +216,15 @@ public interface PostWebPscSortingMatchingMapper {
             @Arg(column="org_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
             @Arg(column="operation_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
             @Arg(column="operation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="operation_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="operation_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
             @Arg(column="matching_distribu_center_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
             @Arg(column="city_wide_flag", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
             @Arg(column="sorting_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
             @Arg(column="remark", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="modify_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
-            @Arg(column="create_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP)
+            @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    List<PostWebPscSortingMatching> selectByBatch(String batchNo);
+    List<PostPscAddressMatchingResult> selectByBatch(String batchNo);
 
     /**
      *
@@ -238,7 +232,7 @@ public interface PostWebPscSortingMatchingMapper {
      */
     @Insert({
             "<script>",
-            "insert into tb_sorting_matching_info (batch_no,order_no, ",
+            "insert into post_psc_address_matching_result (batch_no,order_no, ",
             "sender_name, ",
             "sender_mobile_one, sender_mobile_two, ",
             "sender_province, sender_city, ",
@@ -253,7 +247,7 @@ public interface PostWebPscSortingMatchingMapper {
             "remark, modify_time, ",
             "create_time)",
             "values " ,
-            "<foreach collection='pscSortingMatchingList' item='item' index='index' separator=','>",
+            "<foreach collection='postPscAddressMatchingResultList' item='item' index='index' separator=','>",
             "(#{item.batchNo,jdbcType=VARCHAR}, ",
             "#{item.orderNo,jdbcType=VARCHAR}, ",
             "#{item.senderName,jdbcType=VARCHAR}, #{item.senderMobileOne,jdbcType=VARCHAR}, ",
@@ -271,5 +265,5 @@ public interface PostWebPscSortingMatchingMapper {
             "</foreach>",
             "</script>"
     })
-    int batchInsert(@Param("pscSortingMatchingList") List<PostWebPscOrderOriginal> pscSortingMatchingList);
+    int batchInsert(@Param("postPscAddressMatchingResultList") java.util.List<PostPscAddressMatchingResult> postPscAddressMatchingResultList);
 }

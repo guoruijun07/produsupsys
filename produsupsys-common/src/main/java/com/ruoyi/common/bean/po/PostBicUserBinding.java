@@ -1,6 +1,6 @@
 package com.ruoyi.common.bean.po;
 
-public class postWebBicUserBinding {
+public class PostBicUserBinding {
     /**
      *  id
      */
@@ -47,7 +47,7 @@ public class postWebBicUserBinding {
      *
      * @mbggenerated
      */
-    public postWebBicUserBinding(Integer id, Integer userid, Integer unitid, Integer validitytime, String callrestrict, String calldisplay, String callrecording) {
+    public PostBicUserBinding(Integer id, Integer userid, Integer unitid, Integer validitytime, String callrestrict, String calldisplay, String callrecording) {
         this.id = id;
         this.userid = userid;
         this.unitid = unitid;
@@ -61,7 +61,7 @@ public class postWebBicUserBinding {
      *
      * @mbggenerated
      */
-    public postWebBicUserBinding() {
+    public PostBicUserBinding() {
         super();
     }
 
