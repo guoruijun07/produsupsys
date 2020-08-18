@@ -42,7 +42,7 @@ public class PostPscAddressMatchingExport {
     /**
      * 用户id user_id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 修改时间 modify_time
@@ -58,7 +58,7 @@ public class PostPscAddressMatchingExport {
      *
      * @mbggenerated
      */
-    public PostPscAddressMatchingExport(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, BigDecimal money, Integer status, Integer userId, Date modifyTime, Date createTime) {
+    public PostPscAddressMatchingExport(Integer id, String batchNo, String fileName, Integer totalNum, Integer successNum, BigDecimal money, Integer status, Long userId, Date modifyTime, Date createTime) {
         this.id = id;
         this.batchNo = batchNo;
         this.fileName = fileName;
@@ -174,7 +174,7 @@ public class PostPscAddressMatchingExport {
 
      * @return money 金额
      */
-    public java.math.BigDecimal getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
@@ -210,7 +210,7 @@ public class PostPscAddressMatchingExport {
 
      * @return user_id 用户id
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -219,7 +219,7 @@ public class PostPscAddressMatchingExport {
 
      * @param userId 用户id
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -228,7 +228,7 @@ public class PostPscAddressMatchingExport {
 
      * @return modify_time 修改时间
      */
-    public java.util.Date getModifyTime() {
+    public Date getModifyTime() {
         return modifyTime;
     }
 

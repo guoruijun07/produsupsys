@@ -1,8 +1,11 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostQpsWaybillInnerTrajectory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostQpsWaybillInnerTrajectory;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PostQpsWaybillInnerTrajectoryMapper {
 
@@ -49,7 +52,6 @@ public interface PostQpsWaybillInnerTrajectoryMapper {
         "#{optime,jdbcType=TIMESTAMP})"
     })
     int insert(PostQpsWaybillInnerTrajectory record);
-    
 
     /**
      *
@@ -68,7 +70,7 @@ public interface PostQpsWaybillInnerTrajectoryMapper {
     @ConstructorArgs({
         @Arg(column="id", javaType= Integer.class, jdbcType=JdbcType.INTEGER, id=true),
         @Arg(column="trace_no", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="post_date", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="post_date", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="receive_place", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="biz_product_name", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="biz_product_no", javaType= String.class, jdbcType=JdbcType.VARCHAR),
@@ -90,10 +92,10 @@ public interface PostQpsWaybillInnerTrajectoryMapper {
         @Arg(column="inner_name", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="returnn", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="return_code", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="optime", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
+        @Arg(column="optime", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
     PostQpsWaybillInnerTrajectory selectByPrimaryKey(Integer id);
-    
+
     /**
      *
      * @mbggenerated

@@ -4,12 +4,20 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.util.DateUtils;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.bean.bo.ReadySortingBO;
+import com.ruoyi.common.bean.po.PostPpcPrice;
+import com.ruoyi.common.bean.po.PostPscBaseSorting;
+import com.ruoyi.common.bean.po.PostPscSortingMatchingExport;
 import com.ruoyi.common.bean.po.SysUser;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.enums.EnumDeviceCode;
+import com.ruoyi.common.enums.EnumMenuCode;
 import com.ruoyi.common.mapper.ISysUserMapper;
+import com.ruoyi.common.mapper.PostPpcPriceMapper;
+import com.ruoyi.common.mapper.PostPscBaseSortingMapper;
+import com.ruoyi.common.mapper.PostPscSortingMatchingExportMapper;
 import com.ruoyi.framework.util.ShiroUtils;
 import com.ruoyi.controller.web.controller.excel.listener.BathSortingDataListener;
 import com.ruoyi.controller.web.controller.excel.template.SortingExportTemplate;
@@ -37,16 +45,16 @@ public class SortingBatchController extends BaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(SortingBatchController.class);
     @Autowired(required = false)
-    private PostWebPscExportMapper postWebPscExportMapper;
+    private PostPscSortingMatchingExportMapper postPscSortingMatchingExportMapper;
 
     @Autowired(required = false)
     private ISysUserMapper sysUserMapper;
 
     @Autowired(required = false)
-    private PostWebPpcPriceMapper postWebPpcPriceMapper;
+    private PostPpcPriceMapper postPpcPriceMapper;
 
     @Autowired(required = false)
-    private PostWebPscSortingMapper postWebPscSortingMapper;
+    private PostPscBaseSortingMapper postPscBaseSortingMapper;
 
     String dirPath = "/home/code" + File.separator + "exportMatching" + File.separator;
 
@@ -65,7 +73,7 @@ public class SortingBatchController extends BaseController {
     public TableDataInfo list(SysUser user, ModelMap mmap)
     {
         startPage();
-        List<PostWebPscExport> list = postWebPscExportMapper.selectByUserId(1L);
+        List<PostPscSortingMatchingExport> list = postPscSortingMatchingExportMapper.selectByUserId(ShiroUtils.getSysUser().getUserId());
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(ShiroUtils.getSysUser().getUserId());
         mmap.put("user", sysUser);
         return getDataTable(list);
@@ -86,8 +94,7 @@ public class SortingBatchController extends BaseController {
         //取出用户的余额
         Double account = sysUser.getAccount() == null ? 0.0 : sysUser.getAccount();
         Long userId = sysUser.getUserId();
-        PostWebPpcPrice priceInfo = postWebPpcPriceMapper.selectPriceByUserId(userId,1,  1);
-//        PostWebPpcPrice priceInfo = new PostWebPpcPrice(1,1L,1,1,0.5);
+        PostPpcPrice priceInfo = postPpcPriceMapper.selectPriceByUserId(userId, EnumMenuCode.MENU_SORTING.getCode(),  EnumDeviceCode.PC.getCode());
         if (priceInfo.getPrice() == null) {
             return AjaxResult.warn(0, "请先设置该用户pc功能单价");
         }
@@ -98,10 +105,10 @@ public class SortingBatchController extends BaseController {
         int totalNum = list.size();
         int successNum = 0;
         //获取到所有分拣信息
-        List<PostWebPscSorting> postWebPscSortings = postWebPscSortingMapper.selectAllData();
-        Map<String, PostWebPscSorting> map = new HashMap<>();
-        for (PostWebPscSorting postWebPscSorting : postWebPscSortings) {
-            map.put(postWebPscSorting.getSortingName(), postWebPscSorting);
+        List<PostPscBaseSorting> postPscBaseSortings = postPscBaseSortingMapper.selectAllData();
+        Map<String, PostPscBaseSorting> map = new HashMap<>();
+        for (PostPscBaseSorting postPscBaseSorting : postPscBaseSortings) {
+            map.put(postPscBaseSorting.getSortingName(), postPscBaseSorting);
         }
 
         List<SortingExportTemplate> exportDatas = new ArrayList<>();
@@ -113,7 +120,7 @@ public class SortingBatchController extends BaseController {
             sortingExport.setThreeSorting(readySortingBo.getThreeSorting());
             sortingExport.setThreeSortingSimple(readySortingBo.getThreeSortingSimple());
 
-            PostWebPscSorting postWebPscSorting = map.get(readySortingBo.getThreeSortingSimple());
+            PostPscBaseSorting postWebPscSorting = map.get(readySortingBo.getThreeSortingSimple());
             if (postWebPscSorting != null) {
                 successNum++;
                 sortingExport.setMarking(postWebPscSorting.getMarking());
@@ -151,14 +158,14 @@ public class SortingBatchController extends BaseController {
             //把数据封装为对象
             EasyExcel.write(outputStream, SortingExportTemplate.class).sheet("订单数据").doWrite(exportDatas);
 
-            PostWebPscExport tbExportInfo = new PostWebPscExport();
-            tbExportInfo.setUserId(sysUser.getUserId());
-            tbExportInfo.setFileName(fileName);
-            tbExportInfo.setTotalNum(totalNum);
-            tbExportInfo.setSucessNum(successNum);
-            tbExportInfo.setMoney(cost);
-            tbExportInfo.setCreateTime(new Date());
-            postWebPscExportMapper.insert(tbExportInfo);
+            PostPscSortingMatchingExport postPscSortingMatchingExport = new PostPscSortingMatchingExport();
+            postPscSortingMatchingExport.setUserId(sysUser.getUserId());
+            postPscSortingMatchingExport.setFileName(fileName);
+            postPscSortingMatchingExport.setTotalNum(totalNum);
+            postPscSortingMatchingExport.setSucessNum(successNum);
+            postPscSortingMatchingExport.setMoney(cost);
+            postPscSortingMatchingExport.setCreateTime(new Date());
+            postPscSortingMatchingExportMapper.insert(postPscSortingMatchingExport);
 
         } catch (Exception e) {
             e.printStackTrace();

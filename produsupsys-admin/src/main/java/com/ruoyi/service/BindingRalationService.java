@@ -1,5 +1,7 @@
 package com.ruoyi.service;
 
+import com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation;
+
 import java.io.IOException;
 
 /**
@@ -8,5 +10,5 @@ import java.io.IOException;
  */
 public interface BindingRalationService {
 
-    PostWebDlvBindingRemoveRalation bindingRalation(PostWebDlvBindingRemoveRalation tbBindingRemoveRalation) throws IOException;
+    PostDlvBindingRemoveRalation bindingRalation(PostDlvBindingRemoveRalation postDlvBindingRemoveRalation) throws IOException;
 }

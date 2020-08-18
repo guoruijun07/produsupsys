@@ -114,6 +114,9 @@ public class PostDlvBindingRemoveRalation {
      */
     private java.util.Date modifyTime;
 
+    private String code;
+    private String result;
+
     /**
      *
      * @mbggenerated
@@ -550,5 +553,21 @@ public class PostDlvBindingRemoveRalation {
      */
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

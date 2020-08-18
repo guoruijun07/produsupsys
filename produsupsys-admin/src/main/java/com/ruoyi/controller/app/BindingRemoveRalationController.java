@@ -1,14 +1,5 @@
 package com.ruoyi.controller.app;
 
-import com.bjyx.entity.po.TbBindingRemoveRalation;
-import com.bjyx.entity.po.TbUserInfo;
-import com.bjyx.entity.vo.TbUserInfoVO;
-import com.bjyx.mapper.TbBindingRmoveRalationMapper;
-import com.bjyx.mapper.TbUserInfoMapper;
-import com.bjyx.service.CommonVerifyService;
-import com.bjyx.service.bindingandremove.BindingRalation;
-import com.bjyx.service.bindingandremove.RemoveRalation;
-import com.bjyx.utils.SysResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

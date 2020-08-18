@@ -1,8 +1,11 @@
 package com.ruoyi.common.mapper;
 
+
+import com.ruoyi.common.bean.po.PostAmcAdministrativeDivision;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostAmcAdministrativeDivision;
+
+import java.util.List;
 
 public interface PostAmcAdministrativeDivisionMapper {
 
@@ -32,7 +35,6 @@ public interface PostAmcAdministrativeDivisionMapper {
     })
     int insert(PostAmcAdministrativeDivision record);
 
-   
     /**
      *
      * @mbggenerated

@@ -7,9 +7,9 @@ public class PostPscBaseSorting {
     private Integer id;
 
     /**
-     * 机构号 org_num
+     * 机构号 org_no
      */
-    private Integer orgNum;
+    private String orgNo;
 
     /**
      * 机构名称 org_name
@@ -80,9 +80,9 @@ public class PostPscBaseSorting {
      *
      * @mbggenerated
      */
-    public PostPscBaseSorting(Integer id, Integer orgNum, String orgName, String sortingName, String distribuCenter, String dlvName, String area, String areaNum, String marking, String remark, String receive1, String receive2, String receive3, String receive4, String receive5) {
+    public PostPscBaseSorting(Integer id, String orgNo, String orgName, String sortingName, String distribuCenter, String dlvName, String area, String areaNum, String marking, String remark, String receive1, String receive2, String receive3, String receive4, String receive5) {
         this.id = id;
-        this.orgNum = orgNum;
+        this.orgNo = orgNo;
         this.orgName = orgName;
         this.sortingName = sortingName;
         this.distribuCenter = distribuCenter;
@@ -108,7 +108,7 @@ public class PostPscBaseSorting {
 
     /**
      * id
-    
+
      * @return id id
      */
     public Integer getId() {
@@ -117,7 +117,7 @@ public class PostPscBaseSorting {
 
     /**
      * id
-    
+
      * @param id id
      */
     public void setId(Integer id) {
@@ -126,25 +126,25 @@ public class PostPscBaseSorting {
 
     /**
      * 机构号
-    
-     * @return org_num 机构号
+
+     * @return org_no 机构号
      */
-    public Integer getOrgNum() {
-        return orgNum;
+    public String getOrgNo() {
+        return orgNo;
     }
 
     /**
      * 机构号
-    
-     * @param orgNum 机构号
+
+     * @param orgNo 机构号
      */
-    public void setOrgNum(Integer orgNum) {
-        this.orgNum = orgNum;
+    public void setOrgNo(String orgNo) {
+        this.orgNo = orgNo == null ? null : orgNo.trim();
     }
 
     /**
      * 机构名称
-    
+
      * @return org_name 机构名称
      */
     public String getOrgName() {
@@ -153,7 +153,7 @@ public class PostPscBaseSorting {
 
     /**
      * 机构名称
-    
+
      * @param orgName 机构名称
      */
     public void setOrgName(String orgName) {
@@ -162,7 +162,7 @@ public class PostPscBaseSorting {
 
     /**
      * 分拣码第三级
-    
+
      * @return sorting_name 分拣码第三级
      */
     public String getSortingName() {
@@ -171,7 +171,7 @@ public class PostPscBaseSorting {
 
     /**
      * 分拣码第三级
-    
+
      * @param sortingName 分拣码第三级
      */
     public void setSortingName(String sortingName) {
@@ -180,7 +180,7 @@ public class PostPscBaseSorting {
 
     /**
      * 集散中心
-    
+
      * @return distribu_center 集散中心
      */
     public String getDistribuCenter() {
@@ -189,7 +189,7 @@ public class PostPscBaseSorting {
 
     /**
      * 集散中心
-    
+
      * @param distribuCenter 集散中心
      */
     public void setDistribuCenter(String distribuCenter) {
@@ -198,7 +198,7 @@ public class PostPscBaseSorting {
 
     /**
      * 投递部
-    
+
      * @return dlv_name 投递部
      */
     public String getDlvName() {
@@ -207,7 +207,7 @@ public class PostPscBaseSorting {
 
     /**
      * 投递部
-    
+
      * @param dlvName 投递部
      */
     public void setDlvName(String dlvName) {
@@ -216,7 +216,7 @@ public class PostPscBaseSorting {
 
     /**
      * 分区
-    
+
      * @return area 分区
      */
     public String getArea() {
@@ -225,7 +225,7 @@ public class PostPscBaseSorting {
 
     /**
      * 分区
-    
+
      * @param area 分区
      */
     public void setArea(String area) {
@@ -234,7 +234,7 @@ public class PostPscBaseSorting {
 
     /**
      * 编号
-    
+
      * @return area_num 编号
      */
     public String getAreaNum() {
@@ -243,7 +243,7 @@ public class PostPscBaseSorting {
 
     /**
      * 编号
-    
+
      * @param areaNum 编号
      */
     public void setAreaNum(String areaNum) {
@@ -252,7 +252,7 @@ public class PostPscBaseSorting {
 
     /**
      * 标识
-    
+
      * @return marking 标识
      */
     public String getMarking() {
@@ -261,7 +261,7 @@ public class PostPscBaseSorting {
 
     /**
      * 标识
-    
+
      * @param marking 标识
      */
     public void setMarking(String marking) {
@@ -270,7 +270,7 @@ public class PostPscBaseSorting {
 
     /**
      * 备注
-    
+
      * @return remark 备注
      */
     public String getRemark() {
@@ -279,7 +279,7 @@ public class PostPscBaseSorting {
 
     /**
      * 备注
-    
+
      * @param remark 备注
      */
     public void setRemark(String remark) {
@@ -288,7 +288,7 @@ public class PostPscBaseSorting {
 
     /**
      * 预留字段
-    
+
      * @return receive1 预留字段
      */
     public String getReceive1() {
@@ -297,7 +297,7 @@ public class PostPscBaseSorting {
 
     /**
      * 预留字段
-    
+
      * @param receive1 预留字段
      */
     public void setReceive1(String receive1) {
@@ -305,72 +305,72 @@ public class PostPscBaseSorting {
     }
 
     /**
-     * 
-    
-     * @return receive2 
+     *
+
+     * @return receive2
      */
     public String getReceive2() {
         return receive2;
     }
 
     /**
-     * 
-    
-     * @param receive2 
+     *
+
+     * @param receive2
      */
     public void setReceive2(String receive2) {
         this.receive2 = receive2 == null ? null : receive2.trim();
     }
 
     /**
-     * 
-    
-     * @return receive3 
+     *
+
+     * @return receive3
      */
     public String getReceive3() {
         return receive3;
     }
 
     /**
-     * 
-    
-     * @param receive3 
+     *
+
+     * @param receive3
      */
     public void setReceive3(String receive3) {
         this.receive3 = receive3 == null ? null : receive3.trim();
     }
 
     /**
-     * 
-    
-     * @return receive4 
+     *
+
+     * @return receive4
      */
     public String getReceive4() {
         return receive4;
     }
 
     /**
-     * 
-    
-     * @param receive4 
+     *
+
+     * @param receive4
      */
     public void setReceive4(String receive4) {
         this.receive4 = receive4 == null ? null : receive4.trim();
     }
 
     /**
-     * 
-    
-     * @return receive5 
+     *
+
+     * @return receive5
      */
     public String getReceive5() {
         return receive5;
     }
 
     /**
-     * 
-    
-     * @param receive5 
+     *
+
+     * @param receive5
      */
     public void setReceive5(String receive5) {
         this.receive5 = receive5 == null ? null : receive5.trim();

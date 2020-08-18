@@ -1,8 +1,11 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostQpsOutsideDetailTrajectory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import  com.ruoyi.common.bean.po.PostQpsOutsideDetailTrajectory;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PostQpsOutsideDetailTrajectoryMapper {
 
@@ -34,7 +37,7 @@ public interface PostQpsOutsideDetailTrajectoryMapper {
         "#{oporgcode,jdbcType=VARCHAR}, #{oporgname,jdbcType=VARCHAR}, ",
         "#{operatorno,jdbcType=VARCHAR}, #{operatorname,jdbcType=VARCHAR})"
     })
-    int insert(com.ruoyi.common.bean.po.PostQpsOutsideDetailTrajectory record);
+    int insert(PostQpsOutsideDetailTrajectory record);
 
     /**
      *
@@ -50,7 +53,7 @@ public interface PostQpsOutsideDetailTrajectoryMapper {
     @ConstructorArgs({
         @Arg(column="id", javaType= Integer.class, jdbcType=JdbcType.INTEGER, id=true),
         @Arg(column="traceNo", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="opTime", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="opTime", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="opCode", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="opName", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="opDesc", javaType= String.class, jdbcType=JdbcType.VARCHAR),
@@ -61,7 +64,7 @@ public interface PostQpsOutsideDetailTrajectoryMapper {
         @Arg(column="operatorNo", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="operatorName", javaType= String.class, jdbcType=JdbcType.VARCHAR)
     })
-    com.ruoyi.common.bean.po.PostQpsOutsideDetailTrajectory selectByPrimaryKey(Integer id);
+    PostQpsOutsideDetailTrajectory selectByPrimaryKey(Integer id);
 
     /**
      *
@@ -82,5 +85,5 @@ public interface PostQpsOutsideDetailTrajectoryMapper {
           "operatorName = #{operatorname,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostQpsOutsideDetailTrajectory record);
+    int updateByPrimaryKey(PostQpsOutsideDetailTrajectory record);
 }

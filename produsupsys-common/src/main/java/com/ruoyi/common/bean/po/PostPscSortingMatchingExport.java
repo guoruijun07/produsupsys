@@ -11,7 +11,7 @@ public class PostPscSortingMatchingExport {
     /**
      * 用户Id user_id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 文件名 file_name
@@ -47,7 +47,7 @@ public class PostPscSortingMatchingExport {
      *
      * @mbggenerated
      */
-    public PostPscSortingMatchingExport(Integer id, Integer userId, String fileName, Integer totalNum, Integer sucessNum, Double money, Date createTime, String remark) {
+    public PostPscSortingMatchingExport(Integer id, Long userId, String fileName, Integer totalNum, Integer sucessNum, Double money, Date createTime, String remark) {
         this.id = id;
         this.userId = userId;
         this.fileName = fileName;
@@ -89,7 +89,7 @@ public class PostPscSortingMatchingExport {
 
      * @return user_id 用户Id
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -98,7 +98,7 @@ public class PostPscSortingMatchingExport {
 
      * @param userId 用户Id
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -194,7 +194,7 @@ public class PostPscSortingMatchingExport {
 
     /**
      * 备注
-    
+
      * @return remark 备注
      */
     public String getRemark() {
@@ -203,7 +203,7 @@ public class PostPscSortingMatchingExport {
 
     /**
      * 备注
-    
+
      * @param remark 备注
      */
     public void setRemark(String remark) {

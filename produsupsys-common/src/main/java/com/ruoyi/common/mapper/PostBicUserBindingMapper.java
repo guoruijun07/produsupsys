@@ -1,8 +1,10 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostBicUserBinding;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostBicUserBinding;
+
+import java.util.List;
 
 public interface PostBicUserBindingMapper {
 
@@ -30,8 +32,7 @@ public interface PostBicUserBindingMapper {
         "#{callrestrict,jdbcType=VARCHAR}, #{calldisplay,jdbcType=VARCHAR}, ",
         "#{callrecording,jdbcType=VARCHAR})"
     })
-    int insert(com.ruoyi.common.bean.po.PostBicUserBinding record);
-    
+    int insert(PostBicUserBinding record);
 
     /**
      *
@@ -52,9 +53,7 @@ public interface PostBicUserBindingMapper {
         @Arg(column="calldisplay", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="callrecording", javaType= String.class, jdbcType=JdbcType.VARCHAR)
     })
-    com.ruoyi.common.bean.po.PostBicUserBinding selectByPrimaryKey(Integer id);
-
-    
+    PostBicUserBinding selectByPrimaryKey(Integer id);
 
     /**
      *
@@ -70,5 +69,5 @@ public interface PostBicUserBindingMapper {
           "callrecording = #{callrecording,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostBicUserBinding record);
+    int updateByPrimaryKey(PostBicUserBinding record);
 }

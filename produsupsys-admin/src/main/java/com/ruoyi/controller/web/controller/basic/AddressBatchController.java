@@ -3,16 +3,19 @@ package com.ruoyi.controller.web.controller.basic;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.util.DateUtils;
 import com.ruoyi.common.bean.bo.AddressOriginalBO;
-import com.ruoyi.common.bean.po.SysUser;
+import com.ruoyi.common.bean.po.*;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
-import com.ruoyi.common.enums.EnumPriceCode;
+import com.ruoyi.common.enums.EnumDeviceCode;
+import com.ruoyi.common.enums.EnumMenuCode;
 import com.ruoyi.common.mapper.*;
 import com.ruoyi.common.utils.bean.BeanUtils;
 import com.ruoyi.framework.util.ShiroUtils;
 import com.ruoyi.controller.web.controller.excel.listener.AddressOriginalListener;
 import com.ruoyi.controller.web.controller.excel.template.SortingMatchiingExportTemplate;
+import com.ruoyi.service.BindingRalationService;
+import com.ruoyi.service.SortingMatchingService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,19 +43,18 @@ public class AddressBatchController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(AddressBatchController.class);
 
     @Autowired(required = false)
-    private PostWebPscExportMapper postWebPscExportMapper;
-
-    @Autowired(required = false)
     private ISysUserMapper sysUserMapper;
 
     @Autowired(required = false)
-    private PostWebPpcPriceMapper postWebPpcPriceMapper;
+    private PostPpcPriceMapper postPpcPriceMapper;
 
     @Autowired(required = false)
-    private PostWebPscAddressBatchExportMapper postWebPscAddressBatchExportMapper;
+    private PostPscAddressMatchingExportMapper postWebPscAddressBatchExportMapper;
 
     @Autowired(required = false)
-    private PostWebPscOrderOriginalMapper postWebPscOrderOriginalMapper;
+    private PostPscAddressOriginalMapper postPscAddressOriginalMapper;
+    @Autowired(required = false)
+    private SortingMatchingService sortingMatchingService;
 
     private  String dirPath = "/home/code"+ File.separator + "exportSorting" + File.separator;
 
@@ -66,7 +68,7 @@ public class AddressBatchController extends BaseController {
     public TableDataInfo list(SysUser user)
     {
         startPage();
-        List<PostWebPscAddressBatchExport> list = postWebPscAddressBatchExportMapper.selectByUserId(ShiroUtils.getSysUser().getUserId());
+        List<PostPscAddressMatchingExport> list = postWebPscAddressBatchExportMapper.selectByUserId(ShiroUtils.getSysUser().getUserId());
         return getDataTable(list);
     }
 
@@ -88,35 +90,35 @@ public class AddressBatchController extends BaseController {
         //生成批次号
         Date currentDate= new Date();
         String batchNo = getBatchNo();
-        PostWebPscAddressBatchExport postWebPscAddressBatchExport = new PostWebPscAddressBatchExport();
-        postWebPscAddressBatchExport .setBatchNo(batchNo);
-        postWebPscAddressBatchExport.setStatus(0);
-        postWebPscAddressBatchExport.setTotalNum(totalNum);
-        postWebPscAddressBatchExport.setUserId(userId);
-        postWebPscAddressBatchExport.setModifyTime(currentDate);
-        postWebPscAddressBatchExport.setCreateTime(currentDate);
-        postWebPscAddressBatchExportMapper.insert(postWebPscAddressBatchExport);
-        int batchId = postWebPscAddressBatchExport.getId();
+        PostPscAddressMatchingExport postPscAddressMatchingExport = new PostPscAddressMatchingExport();
+        postPscAddressMatchingExport .setBatchNo(batchNo);
+        postPscAddressMatchingExport.setStatus(0);
+        postPscAddressMatchingExport.setTotalNum(totalNum);
+        postPscAddressMatchingExport.setUserId(userId);
+        postPscAddressMatchingExport.setModifyTime(currentDate);
+        postPscAddressMatchingExport.setCreateTime(currentDate);
+        postWebPscAddressBatchExportMapper.insert(postPscAddressMatchingExport);
+        int batchId = postPscAddressMatchingExport.getId();
         //生成批次号
-        List<PostWebPscOrderOriginal> postWebPscOrderOriginalList = new ArrayList<>();
+        List<PostPscAddressOriginal> postPscAddressOriginalList = new ArrayList<>();
 
         for (AddressOriginalBO orderOriginalBO : addressOriginalList) {
-            PostWebPscOrderOriginal postWebPscOrderOriginal = new PostWebPscOrderOriginal();
-            BeanUtils.copyProperties(orderOriginalBO,postWebPscOrderOriginal);
-            postWebPscOrderOriginal.setBatchNo(batchNo);
-            postWebPscOrderOriginal.setOrderNo(getOrderNo());
-            postWebPscOrderOriginal.setOperationNo(String.valueOf(userId));
-            postWebPscOrderOriginal.setOperationName(userName);
-            postWebPscOrderOriginal.setOperationTime(currentDate);
-            postWebPscOrderOriginal.setCityWideFlag(1); //同城标识（1同城，0外阜）
-            postWebPscOrderOriginal.setSortingStatus(0);
-            postWebPscOrderOriginal.setModifyTime(currentDate);
-            postWebPscOrderOriginal.setCreateTime(currentDate);
-            postWebPscOrderOriginalList.add(postWebPscOrderOriginal);
+            PostPscAddressOriginal postPscAddressOriginal = new PostPscAddressOriginal();
+            BeanUtils.copyProperties(orderOriginalBO,postPscAddressOriginal);
+            postPscAddressOriginal.setBatchNo(batchNo);
+            postPscAddressOriginal.setOrderNo(getOrderNo());
+            postPscAddressOriginal.setOperationNo(String.valueOf(userId));
+            postPscAddressOriginal.setOperationName(userName);
+            postPscAddressOriginal.setOperationTime(currentDate);
+            postPscAddressOriginal.setCityWideFlag(1); //同城标识（1同城，0外阜）
+            postPscAddressOriginal.setSortingStatus(0);
+            postPscAddressOriginal.setModifyTime(currentDate);
+            postPscAddressOriginal.setCreateTime(currentDate);
+            postPscAddressOriginalList.add(postPscAddressOriginal);
         }
 //
 //        //批量入库
-        postWebPscOrderOriginalMapper.batchInsert(postWebPscOrderOriginalList);
+        postPscAddressOriginalMapper.batchInsert(postPscAddressOriginalList);
 
         return AjaxResult.success("导入成功");
     }
@@ -129,9 +131,10 @@ public class AddressBatchController extends BaseController {
     public AjaxResult orderMatching( HttpSession session,String batchNo) throws IOException {
 
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(ShiroUtils.getSysUser().getUserId());
+        Long userId = sysUser.getUserId();
         //取出用户的余额
         Double account = sysUser.getAccount() == null ? 0.0 : sysUser.getAccount();
-        PostWebPpcPrice priceInfo = postWebPpcPriceMapper.selectPriceByUserId(sysUser.getUserId(),EnumPriceCode.PC_PRICE.getCode(),  2);
+        PostPpcPrice priceInfo = postPpcPriceMapper.selectPriceByUserId(userId, EnumMenuCode.MENU_ADDRESS.getCode(),  EnumDeviceCode.PC.getCode());
 
         if(priceInfo ==  null){
             return AjaxResult.success("请先设置该用户pc功能单价");
@@ -139,15 +142,15 @@ public class AddressBatchController extends BaseController {
         Double pcPrice = priceInfo.getPrice() == null ? 0.0 : priceInfo.getPrice();
 
         //获取到总得需要匹配的条数
-        List<TbOrderOriginalInfo> tbOrderOriginalInfos = tbOrderOriginalInfoMapper.selectByBatchNo(batchNo);
+        List<PostPscAddressOriginal> postPscAddressOriginalList = postPscAddressOriginalMapper.selectByBatchNo(batchNo);
 
-        int totalNum = tbOrderOriginalInfos.size();
+        int totalNum = postPscAddressOriginalList.size();
 
         //如果余额不够，直接返回，不生成文件
         Double cost = totalNum * pcPrice;
 //        Double cost = successNum * Double.valueOf(perMoney);
-        if (cost > totalSum) {
-            return new SysResult(0, "您的余额不够，请联系管理员充值");
+        if (cost > account) {
+            return AjaxResult.success("您的余额不够，请联系管理员充值");
         }
 
         //传入批次号，调取远程接口，根据匹配状态，生成对应文件导出
@@ -157,11 +160,11 @@ public class AddressBatchController extends BaseController {
 
         }catch (Exception e){
             e.printStackTrace();
-            return new SysResult(0, "匹配数据失败");
+            return  AjaxResult.success("匹配数据失败");
 
         }
 
-        List<TbSortingMatchingInfo> tbSortingMatchingInfoList = tbSortingMatchingInfoMapper.selectByBatchNo(batchNo);
+        List<PostPscAddressMatchingResult> tbSortingMatchingInfoList = PostPscAddressMatchingResult.selectByBatchNo(batchNo);
         Integer successMatching   = tbSortingMatchingInfoMapper.selectByCountSucessAndBatchNo(batchNo);
 
         //更新余额

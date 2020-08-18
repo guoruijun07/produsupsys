@@ -1,8 +1,11 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostQpsInnerDetailTrajectory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostQpsInnerDetailTrajectory;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PostQpsInnerDetailTrajectoryMapper {
 
@@ -34,7 +37,7 @@ public interface PostQpsInnerDetailTrajectoryMapper {
         "#{telephone,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, ",
         "#{remark,jdbcType=VARCHAR})"
     })
-    int insert(com.ruoyi.common.bean.po.PostQpsInnerDetailTrajectory record);
+    int insert(PostQpsInnerDetailTrajectory record);
 
     /**
      *
@@ -50,7 +53,7 @@ public interface PostQpsInnerDetailTrajectoryMapper {
     @ConstructorArgs({
         @Arg(column="id", javaType= Integer.class, jdbcType=JdbcType.INTEGER, id=true),
         @Arg(column="traceNo", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="opTime", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="opTime", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="opOrgSimpleName", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="opCode", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="opName", javaType= String.class, jdbcType=JdbcType.VARCHAR),
@@ -60,7 +63,7 @@ public interface PostQpsInnerDetailTrajectoryMapper {
         @Arg(column="source", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="remark", javaType= String.class, jdbcType=JdbcType.VARCHAR)
     })
-    com.ruoyi.common.bean.po.PostQpsInnerDetailTrajectory selectByPrimaryKey(Integer id);
+    PostQpsInnerDetailTrajectory selectByPrimaryKey(Integer id);
 
     /**
      *
@@ -80,5 +83,5 @@ public interface PostQpsInnerDetailTrajectoryMapper {
           "remark = #{remark,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostQpsInnerDetailTrajectory record);
+    int updateByPrimaryKey(PostQpsInnerDetailTrajectory record);
 }

@@ -1,8 +1,10 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostPscAddressOriginal;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostPscAddressOriginal;
+
+import java.util.Date;
 import java.util.List;
 
 public interface PostPscAddressOriginalMapper {
@@ -85,15 +87,14 @@ public interface PostPscAddressOriginalMapper {
         @Arg(column="reciver_address", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="operation_no", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="operation_name", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="operation_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="operation_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="city_wide_flag", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
         @Arg(column="sorting_status", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
         @Arg(column="remark", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-        @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
+        @Arg(column="modify_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="create_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
     PostPscAddressOriginal selectByPrimaryKey(Integer id);
-    
 
     /**
      *
@@ -133,52 +134,9 @@ public interface PostPscAddressOriginalMapper {
      *
      * @mbggenerated
      */
-    @Select({
-            "select",
-            "id, batch_no, order_no, sender_name, sender_mobile_one, sender_mobile_two, sender_province, ",
-            "sender_city, sender_county, sender_address, reciver_name, reciver_mobile_one, ",
-            "reciver_mobile_two, reciver_province, reciver_city, reciver_county, reciver_address, ",
-            "operation_no, operation_name, operation_time, city_wide_flag, sorting_status, ",
-            "remark, modify_time, create_time",
-            "from post_psc_address_original",
-            "where batch_no = #{batchNo,jdbcType=VARCHAR}"
-    })
-    @ConstructorArgs({
-            @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
-            @Arg(column="batch_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="order_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="sender_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="reciver_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="operation_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="operation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="operation_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-            @Arg(column="city_wide_flag", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
-            @Arg(column="sorting_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
-            @Arg(column="remark", javaType=String.class, jdbcType=JdbcType.VARCHAR),
-            @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-            @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
-    })
-    List<PostPscAddressOriginal> selectByBatchNo(String batchNo);
-
-    /**
-     *
-     * @mbggenerated
-     */
     @Insert({
             "<script>",
-            "insert into post_psc_address_original (batch_no, ",
+            "insert into tb_order_original_info (batch_no, ",
             "order_no, sender_name, ",
             "sender_mobile_one, sender_mobile_two, ",
             "sender_province, sender_city, ",
@@ -209,5 +167,66 @@ public interface PostPscAddressOriginalMapper {
             "</script>"
     })
     int batchInsert(@Param("postPscAddressOriginalList") List<PostPscAddressOriginal> postPscAddressOriginalList);
-    
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Select({
+            "select",
+            "id, batch_no, order_no, sender_name, sender_mobile_one, sender_mobile_two, sender_province, ",
+            "sender_city, sender_county, sender_address, reciver_name, reciver_mobile_one, ",
+            "reciver_mobile_two, reciver_province, reciver_city, reciver_county, reciver_address, ",
+            "operation_no, operation_name, operation_time, city_wide_flag, sorting_status, ",
+            "remark, modify_time, create_time",
+            "from tb_order_original_info",
+            "where batch_no = #{batchNo,jdbcType=VARCHAR}"
+    })
+    @ConstructorArgs({
+            @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
+            @Arg(column="batch_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="order_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="sender_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_mobile_one", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_mobile_two", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_province", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_city", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_county", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="reciver_address", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_no", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_name", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="operation_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="city_wide_flag", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="sorting_status", javaType=Integer.class, jdbcType=JdbcType.INTEGER),
+            @Arg(column="remark", javaType=String.class, jdbcType=JdbcType.VARCHAR),
+            @Arg(column="modify_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP),
+            @Arg(column="create_time", javaType=Date.class, jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<PostPscAddressOriginal> selectByBatchNo(String batchNo);
+
+    /**
+     *
+     * @mbggenerated
+     */
+    @Update({
+            "<script>",
+            "<foreach collection='orderOriginalInfos' item='item' separator=';'>",
+            "update tb_order_original_info",
+            "set ",
+            "city_wide_flag = #{item.cityWideFlag,jdbcType=INTEGER},",
+            "sorting_status = #{item.sortingStatus,jdbcType=INTEGER},",
+            "modify_time = #{item.modifyTime,jdbcType=TIMESTAMP}",
+            "where order_no = #{item.orderNo,jdbcType=VARCHAR}",
+            "</foreach>",
+            "</script>",
+    })
+    int batchUpdateByOrderNo(@Param("orderOriginalInfos") List<PostPscAddressOriginal> orderOriginalInfos);
+
 }

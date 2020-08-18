@@ -3,6 +3,9 @@ package com.ruoyi.service.impl;
 import com.alibaba.excel.util.DateUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation;
+import com.ruoyi.common.mapper.PostDlvBindingRemoveRalationMapper;
+import com.ruoyi.common.mapper.PostQpsOutsideDetailTrajectoryMapper;
 import com.ruoyi.common.mapper.PostWebQpsDetailTrajectoryOutsideMapper;
 import com.ruoyi.common.utils.ApiSignUtils;
 import com.ruoyi.service.BindingRalationService;
@@ -35,14 +38,13 @@ public class BindingRalationServiceImpl implements BindingRalationService {
     private static final Logger logger = LoggerFactory.getLogger(BindingRalationServiceImpl.class);
 
     @Autowired
-    private PostWebQpsDetailTrajectoryOutsideMapper tbDetailTrajectoryOutsideInfoMapper;
+    private PostQpsOutsideDetailTrajectoryMapper postQpsOutsideDetailTrajectoryMapper;
 
     @Autowired
-
-    private PostWebDlvBindingRemoveRalationMapper tbBindingRmoveRalation;
+    private PostDlvBindingRemoveRalationMapper postDlvBindingRemoveRalationMapper;
 
     @Override
-    public PostWebDlvBindingRemoveRalation bindingRalation(PostWebDlvBindingRemoveRalation tbBindingRemoveRalation) throws IOException {
+    public PostDlvBindingRemoveRalation bindingRalation(PostDlvBindingRemoveRalation postDlvBindingRemoveRalation) throws IOException {
         //版本号
         String ver="2.0";
         //消息ID
@@ -58,13 +60,13 @@ public class BindingRalationServiceImpl implements BindingRalationService {
         //合作伙伴的应用标识
         String appkey="uhxYUGOJ2UMkyTRpsdbABE7a0p0L2LKN5NhjowyqeFNMlsX7vwrIOgE6hAhXmUiV";
         //合作伙伴编号 *
-        String unitID=tbBindingRemoveRalation.getUnitid().toString();
+        String unitID=postDlvBindingRemoveRalation.getUnitid().toString();
         //真实号码,对应AXB业务中的号码A
-        String prtms=tbBindingRemoveRalation.getPrtms();
+        String prtms=postDlvBindingRemoveRalation.getPrtms();
         //安全号码,对应AXB业务中的号码X
-        String smbms=tbBindingRemoveRalation.getSmbms();
+        String smbms=postDlvBindingRemoveRalation.getSmbms();
         //其他号码，对应AXB业务中的号码B。当A为主叫号码，X为被叫号码，B为对端号码。
-        String otherms=tbBindingRemoveRalation.getOtherms();
+        String otherms=postDlvBindingRemoveRalation.getOtherms();
         //订购时间
         String subts=ts;
         //产品id，0：普通绑定，1：绑定的同时注册同步到大网
@@ -75,16 +77,16 @@ public class BindingRalationServiceImpl implements BindingRalationService {
         String callrestrict="0";
         //来显控制 *
         String calldisplay="0,0";
-        if(tbBindingRemoveRalation.getCalldisplay()!=null){
-            calldisplay=tbBindingRemoveRalation.getCalldisplay();
+        if(postDlvBindingRemoveRalation.getCalldisplay()!=null){
+            calldisplay=postDlvBindingRemoveRalation.getCalldisplay();
         }
         //录音控制 *
         String callrecording="1";
-        if(tbBindingRemoveRalation.getCallrecording()!=null){
-            callrecording=tbBindingRemoveRalation.getCallrecording();
+        if(postDlvBindingRemoveRalation.getCallrecording()!=null){
+            callrecording=postDlvBindingRemoveRalation.getCallrecording();
         }
         //号码有效期 *
-        Date validitytimeDate =tbBindingRemoveRalation.getValiditytime();
+        Date validitytimeDate =postDlvBindingRemoveRalation.getValiditytime();
         String validitytime = "";
         if(validitytimeDate==null){
             //默认申请两天
@@ -120,8 +122,8 @@ public class BindingRalationServiceImpl implements BindingRalationService {
         map.put("calldisplay",calldisplay);
         map.put("callrecording",callrecording);
         map.put("validitytime",validitytime);
-        if(tbBindingRemoveRalation.getUuidinpartner()!=null)
-            map.put("uuidinpartner",tbBindingRemoveRalation.getUuidinpartner());
+        if(postDlvBindingRemoveRalation.getUuidinpartner()!=null)
+            map.put("uuidinpartner",postDlvBindingRemoveRalation.getUuidinpartner());
 
         String sid= ApiSignUtils.signTopRequest(map,secret,"MD5");
         map.put("sid",sid);
@@ -159,7 +161,7 @@ public class BindingRalationServiceImpl implements BindingRalationService {
             if(entity!=null){
                 String str = EntityUtils.toString(entity,"UTF-8");
                 Map<String, Object> strMap = JSONObject.parseObject(str);
-                PostWebDlvBindingRemoveRalation result=new PostWebDlvBindingRemoveRalation();
+                PostDlvBindingRemoveRalation result=new PostDlvBindingRemoveRalation();
                 //获取异常信息
                 if(strMap .get("error_response")!=null) {
                     Map<String, Object> err = JSON.parseObject(parseString(strMap.get("error_response")), Map.class);
@@ -173,19 +175,19 @@ public class BindingRalationServiceImpl implements BindingRalationService {
                     }
                 }
 
-                result=JSON.parseObject(parseString(strMap.get("binding_Relation_response")),PostWebDlvBindingRemoveRalation.class);
+                result=JSON.parseObject(parseString(strMap.get("binding_Relation_response")),PostDlvBindingRemoveRalation.class);
                 //保存操作
-                PostWebDlvBindingRemoveRalation saveBo=JSON.parseObject(JSON.toJSONString(map), PostWebDlvBindingRemoveRalation.class);
+                PostDlvBindingRemoveRalation saveBo=JSON.parseObject(JSON.toJSONString(map), PostDlvBindingRemoveRalation.class);
                 saveBo.setSmbms(result.getSmbms());
                 saveBo.setDissubts(null);
                 saveBo.setStatus("1");
-                saveBo.setSource(tbBindingRemoveRalation.getSource());
-                saveBo.setMenu(tbBindingRemoveRalation.getMenu());
-                saveBo.setUserid(tbBindingRemoveRalation.getUserid());
-                saveBo.setUsername(tbBindingRemoveRalation.getUsername());
+                saveBo.setSource(postDlvBindingRemoveRalation.getSource());
+                saveBo.setMenu(postDlvBindingRemoveRalation.getMenu());
+                saveBo.setUserid(postDlvBindingRemoveRalation.getUserid());
+                saveBo.setUsername(postDlvBindingRemoveRalation.getUsername());
                 saveBo.setCreateTime(new Date());
                 saveBo.setModifyTime(new Date());
-                tbBindingRmoveRalation.insert(saveBo);
+                postDlvBindingRemoveRalationMapper.insert(saveBo);
                 result.setCode("0");
                 result.setResult("绑定成功");
                 return result;

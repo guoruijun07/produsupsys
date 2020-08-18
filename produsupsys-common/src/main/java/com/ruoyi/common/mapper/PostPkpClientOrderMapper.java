@@ -1,8 +1,12 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostPkpClientOrder;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostPkpClientOrder;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 public interface PostPkpClientOrderMapper {
 
@@ -48,7 +52,7 @@ public interface PostPkpClientOrderMapper {
         "#{profitRate,jdbcType=DECIMAL})"
     })
     int insert(PostPkpClientOrder record);
-    
+
     /**
      *
      * @mbggenerated
@@ -66,8 +70,8 @@ public interface PostPkpClientOrderMapper {
     @ConstructorArgs({
         @Arg(column="id", javaType= Long.class, jdbcType=JdbcType.BIGINT, id=true),
         @Arg(column="is_fee", javaType= String.class, jdbcType=JdbcType.CHAR, id=true),
-        @Arg(column="order_date", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-        @Arg(column="send_date", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="order_date", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="send_date", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="company", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="mail_no", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="fee", javaType= String.class, jdbcType=JdbcType.VARCHAR),
@@ -88,10 +92,9 @@ public interface PostPkpClientOrderMapper {
         @Arg(column="package_fee", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="total_fee", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="profit", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="profit_rate", javaType= java.math.BigDecimal.class, jdbcType=JdbcType.DECIMAL)
+        @Arg(column="profit_rate", javaType= BigDecimal.class, jdbcType=JdbcType.DECIMAL)
     })
     PostPkpClientOrder selectByPrimaryKey(PostPkpClientOrder key);
-    
 
     /**
      *

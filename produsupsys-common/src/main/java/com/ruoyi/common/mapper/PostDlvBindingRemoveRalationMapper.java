@@ -1,8 +1,11 @@
 package com.ruoyi.common.mapper;
 
+import com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PostDlvBindingRemoveRalationMapper {
 
@@ -42,8 +45,8 @@ public interface PostDlvBindingRemoveRalationMapper {
         "#{username,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, ",
         "#{modifyTime,jdbcType=TIMESTAMP})"
     })
-    int insert(com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation record);
-    
+    int insert(PostDlvBindingRemoveRalation record);
+
     /**
      *
      * @mbggenerated
@@ -62,12 +65,12 @@ public interface PostDlvBindingRemoveRalationMapper {
         @Arg(column="prtms", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="smbms", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="otherms", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="subts", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-        @Arg(column="dissubts", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="subts", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="dissubts", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="callrestrict", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="calldisplay", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="callrecording", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="validitytime", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="validitytime", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
         @Arg(column="uuidinpartner", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="usertype", javaType= String.class, jdbcType=JdbcType.VARCHAR),
         @Arg(column="regphone", javaType= String.class, jdbcType=JdbcType.VARCHAR),
@@ -76,10 +79,10 @@ public interface PostDlvBindingRemoveRalationMapper {
         @Arg(column="menu", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
         @Arg(column="userid", javaType= Integer.class, jdbcType=JdbcType.INTEGER),
         @Arg(column="username", javaType= String.class, jdbcType=JdbcType.VARCHAR),
-        @Arg(column="create_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP),
-        @Arg(column="modify_time", javaType= java.util.Date.class, jdbcType=JdbcType.TIMESTAMP)
+        @Arg(column="create_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP),
+        @Arg(column="modify_time", javaType= Date.class, jdbcType=JdbcType.TIMESTAMP)
     })
-    com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation selectByPrimaryKey(Integer id);
+    PostDlvBindingRemoveRalation selectByPrimaryKey(Integer id);
 
     /**
      *
@@ -109,5 +112,5 @@ public interface PostDlvBindingRemoveRalationMapper {
           "modify_time = #{modifyTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(com.ruoyi.common.bean.po.PostDlvBindingRemoveRalation record);
+    int updateByPrimaryKey(PostDlvBindingRemoveRalation record);
 }
